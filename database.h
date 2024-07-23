@@ -12,11 +12,26 @@ class Database : public QObject
 public:
     explicit Database(QObject *parent = nullptr);
 
+    Q_PROPERTY(QString username READ username WRITE setUsername NOTIFY usernameChanged FINAL)
+    Q_PROPERTY(bool logginIn READ logginIn WRITE setLogginIn NOTIFY logginInChanged FINAL)
+
+    QString username() const;
+    void setUsername(const QString &newUsername);
+
+    bool logginIn() const;
+    void setLogginIn(bool newLogginIn);
+
 signals:
 
 
+    void usernameChanged();
+
+    void logginInChanged();
+
 private:
     QSqlDatabase db_connection;
+    QString m_username;
+    bool m_logginIn;
 };
 
 #endif // DATABASE_H
