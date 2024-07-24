@@ -6,7 +6,7 @@ Database::Database(QObject *parent)
 {
     db_connection = QSqlDatabase::addDatabase("QPSQL");
     db_connection.setHostName(host);
-    db_connection.setDatabaseName("RMP");
+    db_connection.setDatabaseName("Rmp");
     db_connection.setPort(5432);
     db_connection.setUserName("postgres");
     db_connection.setPassword(password);
@@ -22,6 +22,8 @@ Database::Database(QObject *parent)
         qDebug() << db_connection.lastError().text();
     }
 
+    QSqlQuery q;
+    q.exec("insert into users values (default, 'test', 'pass');");
 }
 
 QString Database::username() const
@@ -48,4 +50,9 @@ void Database::setLogginIn(bool newLogginIn)
         return;
     m_logginIn = newLogginIn;
     emit logginInChanged();
+}
+
+QString Database::hashPassword(const QString &password)
+{
+    return QString(QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Md5));
 }

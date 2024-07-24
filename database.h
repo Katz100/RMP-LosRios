@@ -5,6 +5,7 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QSqlError>
+#include <QCryptographicHash>
 
 class Database : public QObject
 {
@@ -22,11 +23,11 @@ public:
     void setLogginIn(bool newLogginIn);
 
 signals:
-
-
     void usernameChanged();
-
     void logginInChanged();
+
+public slots:
+    QString hashPassword(const QString& password);
 
 private:
     QSqlDatabase db_connection;
