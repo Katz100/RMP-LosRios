@@ -31,7 +31,7 @@ public slots:
 
 private:
     QSqlDatabase db_connection;
-    QString m_username;
+    QString m_username = "Guest";
     bool m_logginIn;
 };
 

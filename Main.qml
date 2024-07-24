@@ -1,12 +1,14 @@
 import QtQuick
+import QtQuick.Controls
+import "content"
 
 Window {
     width: 640
     height: 480
     visible: true
-    title: qsTr("Hello World")
+    title: qsTr("Rate My Los Rios Professor")
 
-    Rectangle {
-
+    TopBar {
+        id: topBar
     }
 }

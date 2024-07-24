@@ -22,8 +22,6 @@ Database::Database(QObject *parent)
         qDebug() << db_connection.lastError().text();
     }
 
-    QSqlQuery q;
-    q.exec("insert into users values (default, 'test', 'pass');");
 }
 
 QString Database::username() const
