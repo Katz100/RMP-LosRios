@@ -28,6 +28,8 @@ signals:
 
 public slots:
     QString hashPassword(const QString& password);
+    bool validateLogin(const QString& username, const QString& password);
+    void loginUser(const QString& username);
 
 private:
     QSqlDatabase db_connection;

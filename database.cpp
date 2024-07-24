@@ -54,3 +54,33 @@ QString Database::hashPassword(const QString &password)
 {
     return QString(QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Md5));
 }
+
+bool Database::validateLogin(const QString &username, const QString &password)
+{
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM users WHERE username = ? AND PASSWORD = ?;");
+    query.bindValue(0, username);
+    query.bindValue(1, password);
+
+    if(!query.exec())
+    {
+        qDebug() << "validateLogin() error: " << query.lastError().text();
+        return false;
+    }
+
+    if (query.next())
+    {
+        int count = query.value(0).toInt();
+        return count == 1;
+
+    }
+
+    return false;
+
+}
+
+void Database::loginUser(const QString &username)
+{
+    setUsername(username);
+    setLogginIn(true);
+}

@@ -20,6 +20,9 @@ qt_add_qml_module(appRMP_LosRios
     content/TopBar.qml
     SOURCES database.h database.cpp
     SOURCES config.h
+    QML_FILES content/LoginMenu.qml
+    QML_FILES content/HomePage.qml
+    QML_FILES content/SignUpPage.qml
 
 )
 

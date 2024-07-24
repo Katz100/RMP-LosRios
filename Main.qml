@@ -11,4 +11,15 @@ Window {
     TopBar {
         id: topBar
     }
+
+    Loader {
+        id: loader
+        anchors {
+            top: topBar.bottom
+            right: parent.right
+            left: parent.left
+            bottom: parent.bottom
+        }
+        source: "content/LoginMenu.qml"
+    }
 }
