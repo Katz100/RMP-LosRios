@@ -30,6 +30,9 @@ public slots:
     QString hashPassword(const QString& password);
     bool validateLogin(const QString& username, const QString& password);
     void loginUser(const QString& username);
+    bool isUsernameTaken(const QString& username);
+    void registerUser(const QString& username, const QString& password);
+
 
 private:
     QSqlDatabase db_connection;

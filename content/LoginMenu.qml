@@ -25,6 +25,7 @@ Rectangle {
         TextField {
             id: passwordField
             placeholderText: "password"
+            echoMode: TextInput.Password
         }
 
         Button {
@@ -32,7 +33,7 @@ Rectangle {
             text: "Sign in"
             Layout.preferredWidth: passwordField.width
             onClicked: {
-                if (usernameField.text === "" || passwordField.text === "" || !Database.validateLogin(usernameField.text, passwordField.text)) {
+                if (usernameField.text === "" || passwordField.text === "" || !Database.validateLogin(usernameField.text, Database.hashPassword(passwordField.text))) {
                     txtVisible = true
                 } else {
                     Database.loginUser(usernameField.text)
@@ -54,7 +55,7 @@ Rectangle {
             MouseArea {
                 anchors.fill: parent
                 cursorShape: Qt.PointingHandCursor
-                onClicked: loader.source = "content.signUpPage.qml"
+                onClicked: loader.source = "content/SignUpPage.qml"
             }
         }
     }

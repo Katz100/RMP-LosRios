@@ -84,3 +84,37 @@ void Database::loginUser(const QString &username)
     setUsername(username);
     setLogginIn(true);
 }
+
+bool Database::isUsernameTaken(const QString &username)
+{
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM users WHERE username = ?;");
+    query.bindValue(0, username);
+
+    if (!query.exec())
+    {
+        qDebug() << "isUsernameTaken() error" << query.lastError().text();
+        return true;
+    }
+
+    if (query.next())
+    {
+        int count = query.value(0).toInt();
+        return count > 0;
+    }
+
+    return false;
+}
+
+void Database::registerUser(const QString &username, const QString &password)
+{
+    QSqlQuery query;
+    query.prepare("INSERT INTO Users (id, username, password) VALUES"
+                  "(DEFAULT, ?, ?);");
+    query.bindValue(0, username);
+    query.bindValue(1, password);
+    if (!query.exec())
+    {
+        qDebug() << "registerUser() error" << query.lastError().text();
+    }
+}
