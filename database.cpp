@@ -113,8 +113,18 @@ void Database::registerUser(const QString &username, const QString &password)
                   "(DEFAULT, ?, ?);");
     query.bindValue(0, username);
     query.bindValue(1, password);
+    int id;
     if (!query.exec())
     {
         qDebug() << "registerUser() error" << query.lastError().text();
+        return;
+    }
+    id = query.lastInsertId().toInt();
+    QSqlQuery insert;
+    insert.prepare("INSERT INTO UserRoles (user_id, role_id) VALUES (?, 1);");
+    insert.bindValue(0, id);
+    if (!insert.exec())
+    {
+        qDebug() << insert.lastError().text();
     }
 }
