@@ -6,11 +6,13 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 find_package(Qt6 6.4 REQUIRED COMPONENTS Quick Sql)
 
+
 qt_standard_project_setup()
 
 qt_add_executable(appRMP_LosRios
     main.cpp
 )
+
 
 qt_add_qml_module(appRMP_LosRios
     URI RMP_LosRios
@@ -23,7 +25,8 @@ qt_add_qml_module(appRMP_LosRios
     QML_FILES content/LoginMenu.qml
     QML_FILES content/HomePage.qml
     QML_FILES content/SignUpPage.qml
-    SOURCES
+
+
 
 )
 
@@ -42,6 +45,8 @@ target_link_libraries(appRMP_LosRios
     PRIVATE Qt6::Quick
     PRIVATE Qt6::Sql
 )
+
+
 
 include(GNUInstallDirs)
 install(TARGETS appRMP_LosRios
