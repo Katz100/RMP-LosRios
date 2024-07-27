@@ -22,4 +22,8 @@ Window {
         }
         source: "content/LoginMenu.qml"
     }
+
+    BusyIndicator {
+
+    }
 }
