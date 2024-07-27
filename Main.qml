@@ -26,5 +26,6 @@ Window {
     BusyIndicator {
         id: busyIndicator
         anchors.centerIn: parent
+        visible: false
     }
 }
