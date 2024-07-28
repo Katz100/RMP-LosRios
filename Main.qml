@@ -12,11 +12,6 @@ Window {
         id: topBar
     }
 
-    BusyIndicator {
-        id: busyIndicator
-        anchors.centerIn: parent
-        visible: false
-    }
 
     Loader {
         id: loader
@@ -27,6 +22,12 @@ Window {
             bottom: parent.bottom
     }
         source: "content/LoginMenu.qml"
+    }
+
+    BusyIndicator {
+        id: busyIndicator
+        anchors.centerIn: parent
+        visible: false
     }
 
 

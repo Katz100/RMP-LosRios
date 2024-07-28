@@ -14,6 +14,7 @@ Rectangle {
         height: parent.width / 2
         anchors.centerIn: parent
 
+
         ColumnLayout {
             anchors.centerIn: parent
             spacing: 20
