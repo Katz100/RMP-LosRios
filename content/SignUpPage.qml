@@ -10,7 +10,7 @@ Rectangle {
 
     Rectangle {
         id: root
-        width: parent.width / 3
+        width: parent.width / 2
         height: parent.width / 2
         anchors.centerIn: parent
         ColumnLayout {
@@ -53,11 +53,11 @@ Rectangle {
                     if (usernameField.text === "" || passwordField.text === "" || (passwordField.text !== repeatPassword.text)) {
                         txtVisible = true
                         invalidString = "Invalid Credentials"
-                    } else if (Database.isUsernameTaken(usernameField.text)) {
+                    } else if (Database.isUsernameTaken((usernameField.text).toLowerCase())) {
                         txtVisible = true
                         invalidString = "Username Taken"
                     } else {
-                        Database.registerUser(usernameField.text, Database.hashPassword(passwordField.text))
+                        Database.registerUser((usernameField.text).toLowerCase(), Database.hashPassword(passwordField.text))
                         Database.loginUser(usernameField.text)
                         txtVisible = false
                         usernameField.text = ""
