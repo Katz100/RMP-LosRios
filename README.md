@@ -10,7 +10,7 @@
 <h1><b>Collaboration</b></h1>
 
 <ol>
-  <li>Create a new branch.</li>
+  <li>Create a new branch. Choose a name desribing what you're working on.</li>
   <pre><code>git branch &lt;branch-name&gt;</code></pre>
   <li>Checkout new branch.</li>
   <pre><code>git checkout &lt;branch-name&gt;</code></pre>
