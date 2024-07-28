@@ -10,9 +10,10 @@ Rectangle {
 
     Rectangle {
         id: root
-        width: parent.width / 3
+        width: parent.width / 2
         height: parent.width / 2
         anchors.centerIn: parent
+
 
         ColumnLayout {
             anchors.centerIn: parent
@@ -45,7 +46,7 @@ Rectangle {
                 text: "Sign in"
                 Layout.preferredWidth: passwordField.width
                 onClicked: {
-                    if (usernameField.text === "" || passwordField.text === "" || !Database.validateLogin(usernameField.text, Database.hashPassword(passwordField.text))) {
+                    if (usernameField.text === "" || passwordField.text === "" || !Database.validateLogin((usernameField.text).toLowerCase(), Database.hashPassword(passwordField.text))) {
                         txtVisible = true
                     } else {
                         Database.loginUser(usernameField.text)

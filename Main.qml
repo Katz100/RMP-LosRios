@@ -12,6 +12,7 @@ Window {
         id: topBar
     }
 
+
     Loader {
         id: loader
         anchors {
@@ -19,7 +20,7 @@ Window {
             right: parent.right
             left: parent.left
             bottom: parent.bottom
-        }
+    }
         source: "content/LoginMenu.qml"
     }
 
@@ -28,4 +29,6 @@ Window {
         anchors.centerIn: parent
         visible: false
     }
+
+
 }
