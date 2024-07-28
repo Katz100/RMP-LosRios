@@ -3,6 +3,6 @@
 <li>Create a fork of this repo.</li>
 <li>Use Qt Creator to clone your forked repo.</li>
 <li>Commit some changes to your repo (database.cpp requires the header file, config.h, or a local copy of the Rmp database).</li>
-<li>Go back to your repo on GitHub and create a new pull request</li>
+<li>Go back to your repo on GitHub and create a new pull request.</li>
 <li>Your pull request will be reviewed and merged to the main branch if everything looks good.</li>
 </ol>
