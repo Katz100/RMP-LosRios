@@ -121,8 +121,9 @@ void Database::registerUser(const QString &username, const QString &password)
     }
     id = query.lastInsertId().toInt();
     QSqlQuery insert;
-    insert.prepare("INSERT INTO UserRoles (user_id, role_id) VALUES (?, 1);");
+    insert.prepare("INSERT INTO UserRoles (user_id, role_id) VALUES (?, ?);");
     insert.bindValue(0, id);
+    insert.bindValue(1, static_cast<int>(UserRole::user));
     if (!insert.exec())
     {
         qDebug() << insert.lastError().text();

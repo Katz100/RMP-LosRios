@@ -16,6 +16,26 @@ public:
     Q_PROPERTY(QString username READ username WRITE setUsername NOTIFY usernameChanged FINAL)
     Q_PROPERTY(bool logginIn READ logginIn WRITE setLogginIn NOTIFY logginInChanged FINAL)
 
+    enum class UserRole
+    {
+        user = 1,
+        admin,
+        mod,
+        teacher
+    };
+
+    Q_ENUM(UserRole)
+
+    enum class School
+    {
+        FLC = 1,
+        ARC,
+        SCC,
+        CRC
+    };
+
+    Q_ENUM(School)
+
     QString username() const;
     void setUsername(const QString &newUsername);
 
@@ -37,7 +57,7 @@ public slots:
 private:
     QSqlDatabase db_connection;
     QString m_username = "Guest";
-    bool m_logginIn;
+    bool m_logginIn = false;
 };
 
 #endif // DATABASE_H
