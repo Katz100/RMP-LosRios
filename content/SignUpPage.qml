@@ -29,6 +29,7 @@ Rectangle {
                 id: usernameField
                 placeholderText: "username"
                 maximumLength: 30
+                Layout.alignment: Qt.AlignCenter
             }
 
             TextField {
@@ -36,6 +37,7 @@ Rectangle {
                 placeholderText: "password"
                 echoMode: TextInput.Password
                 maximumLength: 50
+                Layout.alignment: Qt.AlignCenter
             }
 
             TextField {
@@ -43,19 +45,24 @@ Rectangle {
                 placeholderText: "repeat password"
                 echoMode: TextInput.Password
                 maximumLength: 50
+                Layout.alignment: Qt.AlignCenter
             }
 
             Button {
                 id: signUpButton
                 text: "Sign up"
                 Layout.preferredWidth: passwordField.width
+                Layout.alignment: Qt.AlignCenter
                 onClicked: {
                     if (usernameField.text === "" || passwordField.text === "" || (passwordField.text !== repeatPassword.text)) {
                         txtVisible = true
-                        invalidString = "Invalid Credentials"
+                        invalidString = "Invalid Credentials/Passwords do not match"
                     } else if (Database.isUsernameTaken((usernameField.text).toLowerCase())) {
                         txtVisible = true
                         invalidString = "Username Taken"
+                    } else if (/\s/.test(usernameField.text) || /\s/.test(passwordField.text)) {
+                        txtVisible = true
+                        invalidString = "Username/Password cannot contain whitespace"
                     } else {
                         Database.registerUser((usernameField.text).toLowerCase(), Database.hashPassword(passwordField.text))
                         Database.loginUser(usernameField.text)
