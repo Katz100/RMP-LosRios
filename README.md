@@ -17,7 +17,7 @@
   <li>Commit changes to your new branch.</li>
   <li>Push commits to your new branch.</li>
   <pre><code>git push origin &lt;branch-name&gt;</code></pre>
-  <li>Or if your branch has no upstream branch</li>
+  <li>Or if your branch has no upstream branch.</li>
   <pre><code>git push --set-upstream origin &lt;branch-name&gt;</code></pre>
-  <li>Create a new pull request when you are ready.</li>
+  <li>Create a new pull request when you're ready.</li>
 </ol>
