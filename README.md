@@ -4,6 +4,7 @@
 
 <ol>
   <li>Use Qt Creator to clone this repo.</li>
+  <li>Add a remote repository to your project. Tools > git > Remote Repository > Manage Remotes
   <li>Install PostgreSQL 16.</li>
   <li>Add these directories to your Path variables.</li>
   <pre><code>C:\Program Files\PostgreSQL\16\bin</code></pre>
