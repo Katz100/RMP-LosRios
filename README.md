@@ -12,7 +12,7 @@
   <pre><code>C:\Program Files\PostgreSQL\16\lib</code></pre>
   <li>Create a new branch. Choose a name describing what you're working on.</li>
   <pre><code>git branch &lt;branch-name&gt;</code></pre>
-  <li>Checkout new branch.</li>
+  <li>Move to your new branch.</li>
   <pre><code>git checkout &lt;branch-name&gt;</code></pre>
   <li>Commit changes to your new branch.</li>
   <li>Push commits to your new branch.</li>
