@@ -1,15 +1,14 @@
-<h1><b>Contributing</b></h1>
-<ol>
-<li>Create a fork of this repo.</li>
-<li>Use Qt Creator to clone your forked repo.</li>
-<li>Commit some changes to your repo (database.cpp requires the header file, config.h, or a local copy of the Rmp database).</li>
-<li>Go back to your repo on GitHub and create a new pull request.</li>
-<li>Your pull request will be reviewed and merged to the main branch if everything looks good.</li>
-</ol>
+
 
 <h1><b>Collaboration</b></h1>
 
 <ol>
+  <li>Use Qt Creator to clone this repo.</li>
+  <li>Install PostgreSQL 16.</li>
+  <li>Add these directories to your Path variables.</li>
+  <pre><code>C:\Program Files\PostgreSQL\16\bin</code></pre>
+  <pre><code>C:\Program Files\PostgreSQL\16\include</code></pre>
+  <pre><code>C:\Program Files\PostgreSQL\16\lib</code></pre>
   <li>Create a new branch. Choose a name describing what you're working on.</li>
   <pre><code>git branch &lt;branch-name&gt;</code></pre>
   <li>Checkout new branch.</li>
