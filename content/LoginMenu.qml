@@ -31,6 +31,7 @@ Rectangle {
             TextField {
                 id: usernameField
                 placeholderText: "username"
+                text: settings.username
                 maximumLength: 30
 
             }
@@ -38,6 +39,7 @@ Rectangle {
             TextField {
                 id: passwordField
                 placeholderText: "password"
+                text: settings.password
                 echoMode: TextInput.Password
                 maximumLength: 50
             }
@@ -78,6 +80,17 @@ Rectangle {
 
             onCheckStateChanged: {
                 settings.checkValue = checkState
+                let _tempu = usernameField.text
+                let _tempp = passwordField.text
+                if (checkState === Qt.Checked) {
+                    settings.username = usernameField.text
+                    settings.password = passwordField.text
+                } else {
+                    settings.username = ""
+                    settings.password = ""
+                    usernameField.text = _tempu
+                    passwordField.text = _tempp
+                }
             }
         }
 

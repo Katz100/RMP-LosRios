@@ -11,6 +11,8 @@ Window {
 
     Settings {
         id: settings
+        property string username: ""
+        property string password: ""
         property int checkValue: Qt.Unchecked
     }
 
@@ -35,6 +37,4 @@ Window {
         anchors.centerIn: parent
         visible: false
     }
-
-
 }
