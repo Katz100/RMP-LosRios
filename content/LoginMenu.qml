@@ -16,6 +16,7 @@ Rectangle {
 
 
         ColumnLayout {
+            id: col
             anchors.centerIn: parent
             spacing: 20
 
@@ -58,19 +59,6 @@ Rectangle {
 
                 }
             }
-
-            Text {
-                id: signUpTxt
-                text: "<u>Sign up</u>"
-                color: "blue"
-                Layout.alignment: Qt.AlignRight
-
-                MouseArea {
-                    anchors.fill: parent
-                    cursorShape: Qt.PointingHandCursor
-                    onClicked: loader.source = "content/SignUpPage.qml"
-                }
-            }
         }
 
         layer.enabled: true
@@ -79,6 +67,40 @@ Rectangle {
             horizontalOffset: 0
             verticalOffset: 1
         }
+        CheckBox {
+            id: checkBox
+            anchors {
+                top: col.bottom
+                left: col.left
+                topMargin: 20
+            }
+        }
 
+        Text {
+            id: rememberMeTxt
+            text: "Remember me"
+            anchors {
+                top: col.bottom
+                left: checkBox.right
+                topMargin: 20
+            }
+        }
+
+        Text {
+            id: signUpTxt
+            text: "<u>Sign up</u>"
+            color: "blue"
+            anchors {
+                horizontalCenter: parent.horizontalCenter
+                bottom: parent.bottom
+                bottomMargin: 5
+            }
+
+            MouseArea {
+                anchors.fill: parent
+                cursorShape: Qt.PointingHandCursor
+                onClicked: loader.source = "content/SignUpPage.qml"
+            }
+        }
     }
 }
