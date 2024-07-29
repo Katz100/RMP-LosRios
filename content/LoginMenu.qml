@@ -69,10 +69,15 @@ Rectangle {
         }
         CheckBox {
             id: checkBox
+            checkState: settings.checkValue
             anchors {
                 top: col.bottom
                 left: col.left
                 topMargin: 20
+            }
+
+            onCheckStateChanged: {
+                settings.checkValue = checkState
             }
         }
 

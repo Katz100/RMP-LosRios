@@ -6,6 +6,7 @@
 int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
+    app.setOrganizationName("Katz Company");
     Database* database = new Database(&app);
     qmlRegisterSingletonInstance("com.company.database", 1, 0, "Database", database);
     QQmlApplicationEngine engine;

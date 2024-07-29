@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls
+import QtCore
 import "content"
 
 Window {
@@ -7,6 +8,11 @@ Window {
     height: 480
     visible: true
     title: qsTr("Rate My Los Rios Professor")
+
+    Settings {
+        id: settings
+        property int checkValue: Qt.Unchecked
+    }
 
     TopBar {
         id: topBar
