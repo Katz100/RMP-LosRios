@@ -5,6 +5,8 @@ import Qt5Compat.GraphicalEffects
 
 import com.company.database
 
+//TODO: remember me logic
+
 Rectangle {
     property bool txtVisible: false
 
@@ -56,6 +58,14 @@ Rectangle {
                         txtVisible = false
                         usernameField.text = ""
                         passwordField.text = ""
+                        if (checkBox.state === Qt.Checked) {
+                            settings.username = usernameField.text
+                            settings.password = passwordField.text
+                        } else {
+                            settings.username = ""
+                            settings.password = ""
+                        }
+
                         loader.source = "content/HomePage.qml"
                     }
 
@@ -78,20 +88,7 @@ Rectangle {
                 topMargin: 20
             }
 
-            onCheckStateChanged: {
-                settings.checkValue = checkState
-                let _tempu = usernameField.text
-                let _tempp = passwordField.text
-                if (checkState === Qt.Checked) {
-                    settings.username = usernameField.text
-                    settings.password = passwordField.text
-                } else {
-                    settings.username = ""
-                    settings.password = ""
-                    usernameField.text = _tempu
-                    passwordField.text = _tempp
-                }
-            }
+            onCheckStateChanged: settings.checkValue = checkState
         }
 
         Text {
