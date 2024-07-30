@@ -84,6 +84,7 @@ Rectangle {
                     MouseArea {
                         hoverEnabled: true
                         anchors.fill: parent
+                        cursorShape: Qt.PointingHandCursor
                         onEntered: {
                             profile.color = "blue"
                             profileTxt.color = "white"
@@ -113,6 +114,7 @@ Rectangle {
                     MouseArea {
                         hoverEnabled: true
                         anchors.fill: parent
+                        cursorShape: Qt.PointingHandCursor
                         onEntered: {
                             accountSettings.color = "blue"
                             accTxt.color = "white"
@@ -142,6 +144,7 @@ Rectangle {
                     MouseArea {
                         hoverEnabled: true
                         anchors.fill: parent
+                        cursorShape: Qt.PointingHandCursor
                         onEntered: {
                             logout.color = "blue"
                             logoutTxt.color = "white"
