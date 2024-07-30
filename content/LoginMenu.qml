@@ -56,16 +56,15 @@ Rectangle {
                     } else {
                         Database.loginUser(usernameField.text)
                         txtVisible = false
-                        usernameField.text = ""
-                        passwordField.text = ""
-                        if (checkBox.state === Qt.Checked) {
+                        if (checkBox.checkState === Qt.Checked) {
                             settings.username = usernameField.text
                             settings.password = passwordField.text
                         } else {
                             settings.username = ""
                             settings.password = ""
                         }
-
+                        usernameField.text = ""
+                        passwordField.text = ""
                         loader.source = "content/HomePage.qml"
                     }
 
