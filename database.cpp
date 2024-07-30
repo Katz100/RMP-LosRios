@@ -37,17 +37,17 @@ void Database::setUsername(const QString &newUsername)
     emit usernameChanged();
 }
 
-bool Database::logginIn() const
+bool Database::loggedIn() const
 {
-    return m_logginIn;
+    return m_loggedIn;
 }
 
-void Database::setLogginIn(bool newLogginIn)
+void Database::setLoggedIn(bool newloggedIn)
 {
-    if (m_logginIn == newLogginIn)
+    if (m_loggedIn == newloggedIn)
         return;
-    m_logginIn = newLogginIn;
-    emit logginInChanged();
+    m_loggedIn = newloggedIn;
+    emit loggedInChanged();
 }
 
 QString Database::hashPassword(const QString &password)
@@ -82,7 +82,7 @@ bool Database::validateLogin(const QString &username, const QString &password)
 void Database::loginUser(const QString &username)
 {
     setUsername(username);
-    setLogginIn(true);
+    setLoggedIn(true);
 }
 
 bool Database::isUsernameTaken(const QString &username)
@@ -128,4 +128,10 @@ void Database::registerUser(const QString &username, const QString &password)
     {
         qDebug() << insert.lastError().text();
     }
+}
+
+void Database::logout()
+{
+    setUsername("Guest");
+    setLoggedIn(false);
 }

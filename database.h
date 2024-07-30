@@ -14,7 +14,7 @@ public:
     explicit Database(QObject *parent = nullptr);
 
     Q_PROPERTY(QString username READ username WRITE setUsername NOTIFY usernameChanged FINAL)
-    Q_PROPERTY(bool logginIn READ logginIn WRITE setLogginIn NOTIFY logginInChanged FINAL)
+    Q_PROPERTY(bool loggedIn READ loggedIn WRITE setLoggedIn NOTIFY loggedInChanged FINAL)
 
     enum class UserRole
     {
@@ -39,12 +39,12 @@ public:
     QString username() const;
     void setUsername(const QString &newUsername);
 
-    bool logginIn() const;
-    void setLogginIn(bool newLogginIn);
+    bool loggedIn() const;
+    void setLoggedIn(bool newloggedIn);
 
 signals:
     void usernameChanged();
-    void logginInChanged();
+    void loggedInChanged();
 
 public slots:
     QString hashPassword(const QString& password);
@@ -52,12 +52,13 @@ public slots:
     void loginUser(const QString& username);
     bool isUsernameTaken(const QString& username);
     void registerUser(const QString& username, const QString& password);
+    void logout();
 
 
 private:
     QSqlDatabase db_connection;
     QString m_username = "Guest";
-    bool m_logginIn = false;
+    bool m_loggedIn = false;
 };
 
 #endif // DATABASE_H
