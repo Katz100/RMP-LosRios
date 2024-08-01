@@ -9,6 +9,7 @@ Window {
     visible: true
     title: qsTr("Rate My Los Rios Professor")
 
+    property int tabIndex: 0
     Settings {
         id: settings
         property string username: ""

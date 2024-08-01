@@ -109,6 +109,7 @@ Rectangle {
                         onClicked: {
                             console.log("Profile clicked")
                             popUp.close()
+                            tabIndex = 0
                             loader.source = "content/ProfileSettings.qml"
                         }
                     }
@@ -140,6 +141,8 @@ Rectangle {
                         onClicked: {
                             console.log("Account Settings clicked")
                             popUp.close()
+                            tabIndex = 1
+                            loader.source = "content/ProfileSettings.qml"
                         }
                     }
                 }
@@ -170,6 +173,8 @@ Rectangle {
                         onClicked: {
                             console.log("Ratings clicked")
                             popUp.close()
+                            tabIndex = 2
+                            loader.source = "content/ProfileSettings.qml"
                         }
                     }
                 }

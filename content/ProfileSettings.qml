@@ -16,6 +16,8 @@ Rectangle {
         TabButton {
             text: "Your Ratings"
         }
+
+        currentIndex: tabIndex
     }
 
     StackLayout {
