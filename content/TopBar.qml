@@ -109,8 +109,8 @@ Rectangle {
                         onClicked: {
                             console.log("Profile clicked")
                             popUp.close()
-                            menuItemClicked(0)
                             loader.source = "content/ProfileSettings.qml"
+                            menuItemClicked(0)
                         }
                     }
                 }
@@ -141,8 +141,8 @@ Rectangle {
                         onClicked: {
                             console.log("Account Settings clicked")
                             popUp.close()
-                            menuItemClicked(1)
                             loader.source = "content/ProfileSettings.qml"
+                            menuItemClicked(1)
                         }
                     }
                 }
@@ -173,8 +173,8 @@ Rectangle {
                         onClicked: {
                             console.log("Ratings clicked")
                             popUp.close()
-                            menuItemClicked(2)
                             loader.source = "content/ProfileSettings.qml"
+                            menuItemClicked(2)
                         }
                     }
                 }
