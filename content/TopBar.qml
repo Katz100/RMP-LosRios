@@ -109,6 +109,7 @@ Rectangle {
                         onClicked: {
                             console.log("Profile clicked")
                             popUp.close()
+                            loader.source = "content/ProfileSettings.qml"
                         }
                     }
                 }

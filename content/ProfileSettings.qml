@@ -16,8 +16,6 @@ Rectangle {
         TabButton {
             text: "Your Ratings"
         }
-
-        onCurrentIndexChanged: console.log(currentIndex)
     }
 
     StackLayout {

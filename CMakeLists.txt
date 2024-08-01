@@ -25,6 +25,7 @@ qt_add_qml_module(appRMP_LosRios
     QML_FILES content/LoginMenu.qml
     QML_FILES content/HomePage.qml
     QML_FILES content/SignUpPage.qml
+    QML_FILES content/ProfileSettings.qml
 
 
 
