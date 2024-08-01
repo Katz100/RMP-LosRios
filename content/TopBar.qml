@@ -3,6 +3,7 @@ import QtQuick.Layouts
 import QtQuick.Controls
 import com.company.database
 
+//TODO: Create custom component for menu items
 Rectangle {
     anchors {
         left: parent.left
@@ -33,21 +34,32 @@ Rectangle {
 
 
 
-        Text {
-            id: usernameTxt
-            text: "Hello, " + Database.username
-            color: "white"
-            font.bold: true
+        Rectangle {
+            id: usernameRect
+            height: usernameTxt.implicitHeight + 20
+            width: usernameTxt.implicitWidth + 20
+            color: "black"
+            radius: 20
+            Text {
+                id: usernameTxt
+                anchors.centerIn: parent
+                text: "Hello, " + Database.username
+                color: "white"
+                font.bold: true
+            }
 
             MouseArea {
                 anchors.fill: parent
+                hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
                 onClicked: {
-                    console.log(Database.loggedIn)
                     if (Database.loggedIn) {
                         popUp.open()
                     }
                 }
+
+                onEntered: usernameRect.color = "#2C2D2D"
+                onExited: usernameRect.color = "black"
             }
         }
 
@@ -63,8 +75,8 @@ Rectangle {
                 border.width: 1
             }
 
-            x: usernameTxt.x - usernameTxt.implicitWidth
-            y: usernameTxt.y + usernameTxt.implicitHeight
+            x: usernameRect.x - usernameRect.implicitWidth - 30
+            y: usernameRect.y + usernameRect.implicitHeight + 30
 
             ColumnLayout {
                 id: colLayout
@@ -126,6 +138,36 @@ Rectangle {
 
                         onClicked: {
                             console.log("Account Settings clicked")
+                            popUp.close()
+                        }
+                    }
+                }
+
+                Rectangle {
+                    id: ratings
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 50
+                    radius: 5
+                    Text {
+                        id: ratingsTxt
+                        anchors.centerIn: parent
+                        text: "Your Ratings"
+                    }
+                    MouseArea {
+                        hoverEnabled: true
+                        anchors.fill: parent
+                        cursorShape: Qt.PointingHandCursor
+                        onEntered: {
+                            ratings.color = "blue"
+                            ratingsTxt.color = "white"
+                        }
+                        onExited: {
+                            ratingsTxt.color = "black"
+                            ratings.color = "white"
+                        }
+
+                        onClicked: {
+                            console.log("Ratings clicked")
                             popUp.close()
                         }
                     }
