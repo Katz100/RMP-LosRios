@@ -16,8 +16,6 @@ Rectangle {
         TabButton {
             text: "Your Ratings"
         }
-
-        currentIndex: tabIndex
     }
 
     StackLayout {
@@ -37,4 +35,11 @@ Rectangle {
             Text {text: "Ratings"}
         }
     }
+
+   Connections {
+       target: window
+       function onMenuItemClicked(index) {
+           control.setCurrentIndex(index)
+       }
+   }
 }

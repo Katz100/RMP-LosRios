@@ -4,12 +4,14 @@ import QtCore
 import "content"
 
 Window {
+    id: window
     width: 640
     height: 480
     visible: true
     title: qsTr("Rate My Los Rios Professor")
 
-    property int tabIndex: 0
+    signal menuItemClicked(var index)
+
     Settings {
         id: settings
         property string username: ""
@@ -38,4 +40,5 @@ Window {
         anchors.centerIn: parent
         visible: false
     }
+
 }
