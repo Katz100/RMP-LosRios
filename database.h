@@ -53,6 +53,7 @@ public slots:
     bool isUsernameTaken(const QString& username);
     void registerUser(const QString& username, const QString& password);
     void logout();
+    int getSchoolId();
 
 
 private:

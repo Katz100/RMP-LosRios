@@ -86,7 +86,23 @@ Rectangle {
         anchors.top: control.bottom
         Rectangle {
             id: profileTab
-            Text {text: "Profile"}
+            GridLayout {
+                columns: 3
+                rowSpacing: 50
+                anchors {left: parent.left; top: parent.top; right: parent.right; topMargin: 50; leftMargin: 50}
+                Text { text: "Username" }
+                TextField {
+                    readOnly: true
+                    text: Database.username
+                }
+                Text { text: "<b>Edit</b>"}
+                Text { text: "School" }
+                ComboBox {
+                    model: ["FLC", "ARC", "SCC", "CRC"]
+                    enabled: false
+                    currentIndex: Database.getSchoolId() - 1
+                }
+            }
         }
         Rectangle {
             id: accountSettingsTab

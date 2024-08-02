@@ -135,3 +135,25 @@ void Database::logout()
     setUsername("Guest");
     setLoggedIn(false);
 }
+
+int Database::getSchoolId()
+{
+    QSqlQuery query;
+    query.prepare("SELECT school_id "
+                  "FROM Users "
+                  "JOIN SchoolRole ON users.id = SchoolRole.user_id "
+                  "WHERE username = ?;");
+    query.bindValue(0, m_username);
+    if (!query.exec())
+    {
+        qDebug() << "getSchoolId() error" << query.lastError().text();
+        return -1;
+    }
+
+    if (query.next())
+    {
+        return query.value(0).toInt();
+    }
+
+    return -1;
+}
