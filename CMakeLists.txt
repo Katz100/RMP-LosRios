@@ -26,7 +26,9 @@ qt_add_qml_module(appRMP_LosRios
     QML_FILES content/HomePage.qml
     QML_FILES content/SignUpPage.qml
     QML_FILES content/ProfileSettings.qml
-
+    RESOURCES
+    images/icons8-eye-24.png
+    images/icons8-hide-24.png
 
 
 )

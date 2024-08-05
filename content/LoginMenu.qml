@@ -8,7 +8,10 @@ import com.company.database
 //TODO: remember me logic
 
 Rectangle {
-    property bool txtVisible: false
+    property bool __txtVisible: false
+    property bool __showPassword: false
+
+
 
     Rectangle {
         id: root
@@ -17,17 +20,20 @@ Rectangle {
         anchors.centerIn: parent
 
 
-        ColumnLayout {
+
+        GridLayout {
             id: col
             anchors.centerIn: parent
-            spacing: 20
+            columns: 2
+            rowSpacing: 20
 
             Text {
                 id: invalidTxt
-                visible: txtVisible
+                visible: __txtVisible
                 text: "Invalid Credentials"
                 color: "red"
                 Layout.alignment: Qt.AlignCenter
+                Layout.columnSpan: 2
             }
 
             TextField {
@@ -35,27 +41,39 @@ Rectangle {
                 placeholderText: "username"
                 text: settings.username
                 maximumLength: 30
-
+                Layout.columnSpan: 2
             }
 
             TextField {
                 id: passwordField
                 placeholderText: "password"
                 text: settings.password
-                echoMode: TextInput.Password
+                echoMode: __showPassword ? TextInput.Normal : TextInput.Password
                 maximumLength: 50
+            }
+
+            Image {
+                id: viewPasswordImg
+                source: !__showPassword ? "../images/icons8-eye-24.png" : "../images/icons8-hide-24.png"
+                MouseArea {
+                    anchors.fill: parent
+                    hoverEnabled: true
+                    cursorShape: Qt.PointingHandCursor
+                    onClicked: __showPassword = !__showPassword
+                }
             }
 
             Button {
                 id: signInButton
                 text: "Sign in"
                 Layout.preferredWidth: passwordField.width
+                Layout.columnSpan: 2
                 onClicked: {
                     if (usernameField.text === "" || passwordField.text === "" || !Database.validateLogin((usernameField.text).toLowerCase(), Database.hashPassword(passwordField.text))) {
-                        txtVisible = true
+                        __txtVisible = true
                     } else {
                         Database.loginUser(usernameField.text)
-                        txtVisible = false
+                        __txtVisible = false
                         if (checkBox.checkState === Qt.Checked) {
                             settings.username = usernameField.text
                             settings.password = passwordField.text

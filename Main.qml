@@ -2,7 +2,6 @@ import QtQuick
 import QtQuick.Controls
 import QtCore
 import "content"
-
 Window {
     id: window
     width: 640
