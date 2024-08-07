@@ -23,6 +23,12 @@ Window {
     }
 
 
+    BusyIndicator {
+        id: busyIndicator
+        anchors.centerIn: parent
+        running: loader.status == Loader.Loading
+    }
+
     Loader {
         id: loader
         anchors {
@@ -32,12 +38,7 @@ Window {
             bottom: parent.bottom
     }
         source: "content/LoginMenu.qml"
+        asynchronous: true
+        visible: status == Loader.Ready
     }
-
-    BusyIndicator {
-        id: busyIndicator
-        anchors.centerIn: parent
-        visible: false
-    }
-
 }
