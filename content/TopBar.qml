@@ -107,7 +107,6 @@ Rectangle {
                         }
 
                         onClicked: {
-                            console.log("Profile clicked")
                             popUp.close()
                             loader.source = "content/ProfileSettings.qml"
                             menuItemClicked(0)
@@ -139,7 +138,6 @@ Rectangle {
                         }
 
                         onClicked: {
-                            console.log("Account Settings clicked")
                             popUp.close()
                             loader.source = "content/ProfileSettings.qml"
                             menuItemClicked(1)
@@ -171,7 +169,6 @@ Rectangle {
                         }
 
                         onClicked: {
-                            console.log("Ratings clicked")
                             popUp.close()
                             loader.source = "content/ProfileSettings.qml"
                             menuItemClicked(2)
@@ -203,7 +200,6 @@ Rectangle {
                         }
 
                         onClicked: {
-                            console.log("Logout clicked")
                             Database.logout()
                             popUp.close()
                             loader.source = "content/LoginMenu.qml"
