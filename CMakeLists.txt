@@ -9,6 +9,7 @@ find_package(Qt6 6.4 REQUIRED COMPONENTS Quick Sql)
 
 qt_standard_project_setup()
 
+
 qt_add_executable(appRMP_LosRios
     main.cpp
 )

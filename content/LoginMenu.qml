@@ -69,6 +69,10 @@ Rectangle {
                 Layout.preferredWidth: passwordField.width
                 Layout.columnSpan: 2
                 onClicked: {
+                    if(!Database.isConnected()) {
+                        Database.connectToDatabase()
+                    }
+
                     if (usernameField.text === "" || passwordField.text === "" || !Database.validateLogin((usernameField.text).toLowerCase(), Database.hashPassword(passwordField.text))) {
                         __txtVisible = true
                     } else {

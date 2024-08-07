@@ -6,7 +6,7 @@ Database::Database(QObject *parent)
 {
     db_connection = QSqlDatabase::addDatabase("QPSQL");
     db_connection.setHostName(host);
-    db_connection.setDatabaseName("Rmp");
+    db_connection.setDatabaseName("Rmp-Test");
     db_connection.setPort(5432);
     db_connection.setUserName("postgres");
     db_connection.setPassword(password);
@@ -20,10 +20,26 @@ Database::Database(QObject *parent)
     {
         qDebug() << "Database connection error";
         qDebug() << db_connection.lastError().text();
+        setConnected(false);
     }
 
 }
 
+//return true if succesfully connected to database, otherwise, return false.
+bool Database::connectToDatabase()
+{
+    if(!db_connection.open())
+    {
+        return db_connection.open();
+    }
+
+    return false;
+}
+
+bool Database::isConnected()
+{
+    return db_connection.isOpen();
+}
 QString Database::username() const
 {
     return m_username;
@@ -157,3 +173,19 @@ int Database::getSchoolId()
 
     return -1;
 }
+
+
+
+bool Database::connected() const
+{
+    return m_connected;
+}
+
+void Database::setConnected(bool newConnected)
+{
+    if (m_connected == newConnected)
+        return;
+    m_connected = newConnected;
+    emit connectedChanged();
+}
+

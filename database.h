@@ -15,6 +15,7 @@ public:
 
     Q_PROPERTY(QString username READ username WRITE setUsername NOTIFY usernameChanged FINAL)
     Q_PROPERTY(bool loggedIn READ loggedIn WRITE setLoggedIn NOTIFY loggedInChanged FINAL)
+    Q_PROPERTY(bool connected READ connected WRITE setConnected NOTIFY connectedChanged FINAL)
 
     enum class UserRole
     {
@@ -42,11 +43,18 @@ public:
     bool loggedIn() const;
     void setLoggedIn(bool newloggedIn);
 
+    bool connected() const;
+    void setConnected(bool newConnected);
+
 signals:
     void usernameChanged();
     void loggedInChanged();
 
+    void connectedChanged();
+
 public slots:
+    bool connectToDatabase();
+    bool isConnected();
     QString hashPassword(const QString& password);
     bool validateLogin(const QString& username, const QString& password);
     void loginUser(const QString& username);
@@ -60,6 +68,7 @@ private:
     QSqlDatabase db_connection;
     QString m_username = "Guest";
     bool m_loggedIn = false;
+    bool m_connected = true;
 };
 
 #endif // DATABASE_H
