@@ -195,7 +195,7 @@ void Database::setSchool(int id)
 {
     QSqlQuery getIdQuery;
     getIdQuery.prepare("SELECT id FROM Users WHERE username = ?");
-    getIdQuery.bindValue(0, username());
+    getIdQuery.bindValue(0, username().toLower());
     if (!getIdQuery.exec())
     {
         qDebug() << "get id error: " << getIdQuery.lastError().text();

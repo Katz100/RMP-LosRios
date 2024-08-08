@@ -141,7 +141,6 @@ Rectangle {
 
                         __enabled = false
                         __readable = true
-                        //TODO: implement methods
                     }
                 }
 
