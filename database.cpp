@@ -174,6 +174,54 @@ int Database::getSchoolId()
     return -1;
 }
 
+void Database::changeUsername(const QString &new_username)
+{
+    QSqlQuery query;
+    query.prepare("UPDATE Users"
+                  " SET username = ?"
+                  " WHERE username = ?");
+    query.bindValue(0, new_username);
+    query.bindValue(1, username());
+    if (!query.exec())
+    {
+        qDebug() << "changeUsername() error: " << query.lastError().text();
+        return;
+    }
+
+    setUsername(new_username);
+}
+
+void Database::setSchool(int id)
+{
+    QSqlQuery getIdQuery;
+    getIdQuery.prepare("SELECT id FROM Users WHERE username = ?");
+    getIdQuery.bindValue(0, username());
+    if (!getIdQuery.exec())
+    {
+        qDebug() << "get id error: " << getIdQuery.lastError().text();
+        return;
+    }
+
+    int userId = 0;
+
+    if (getIdQuery.next())
+    {
+        userId = getIdQuery.value(0).toInt();
+    }
+    qDebug() << "id: " << userId;
+    QSqlQuery query;
+    query.prepare("INSERT INTO SchoolRole (user_id, school_id)"
+                  " VALUES (?, ?)"
+                  " ON CONFLICT (user_id) DO UPDATE SET"
+                  " school_id = EXCLUDED.school_id");
+    query.bindValue(0, userId);
+    query.bindValue(1, id);
+    if(!query.exec())
+    {
+        qDebug() << "setSchool() error" << query.lastError().text();
+    }
+}
+
 
 
 bool Database::connected() const

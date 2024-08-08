@@ -62,6 +62,8 @@ public slots:
     void registerUser(const QString& username, const QString& password);
     void logout();
     int getSchoolId();
+    void changeUsername(const QString& new_username);
+    void setSchool(int id);
 
 
 private:

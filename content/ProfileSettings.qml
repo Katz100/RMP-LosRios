@@ -94,10 +94,10 @@ Rectangle {
                 rowSpacing: 50
                 anchors {left: parent.left; top: parent.top; right: parent.right; topMargin: 50; leftMargin: 50}
                 Text {
-                    id: usernameTxt
                     text: "Username"
                 }
                 TextField {
+                    id: usernameTxt
                     readOnly: __readable
                     text: Database.username
                 }
@@ -131,11 +131,17 @@ Rectangle {
                     visible: __enabled
 
                     onClicked: {
+                        if(!Database.isUsernameTaken((usernameTxt.text).toLowerCase())) {
+                            Database.changeUsername((usernameTxt.text).toLowerCase())
+                        } else {
+                            usernameTxt.text = Database.username
+                        }
+
+                        Database.setSchool(schoolComboBox.currentIndex+1)
+
                         __enabled = false
                         __readable = true
                         //TODO: implement methods
-                        Database.changeUsername(usernameTxt.text)
-                        Database.setSchool(schoolComboBox.currentIndex)
                     }
                 }
 
@@ -164,10 +170,10 @@ Rectangle {
         }
     }
 
-   Connections {
-       target: window
-       function onMenuItemClicked(index) {
-           control.setCurrentIndex(index)
-       }
-   }
+    Connections {
+        target: window
+        function onMenuItemClicked(index) {
+            control.setCurrentIndex(index)
+        }
+    }
 }
