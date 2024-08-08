@@ -10,7 +10,7 @@ Window {
     title: qsTr("Rate My Los Rios Professor")
 
     signal menuItemClicked(var index)
-
+    property int menuIndex: 0
     Settings {
         id: settings
         property string username: ""

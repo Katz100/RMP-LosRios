@@ -64,6 +64,8 @@ public slots:
     int getSchoolId();
     void changeUsername(const QString& new_username);
     void setSchool(int id);
+    int getUserId();
+    void deleteUser();
 
 
 private:

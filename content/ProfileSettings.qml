@@ -175,4 +175,8 @@ Rectangle {
             control.setCurrentIndex(index)
         }
     }
+
+    Component.onCompleted: {
+        control.setCurrentIndex(menuIndex)
+    }
 }

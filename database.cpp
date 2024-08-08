@@ -222,6 +222,35 @@ void Database::setSchool(int id)
     }
 }
 
+int Database::getUserId()
+{
+    QSqlQuery query;
+    query.prepare("SELECT id FROM Users WHERE username = ?");
+    query.bindValue(0, username());
+    if(!query.exec())
+    {
+        qDebug() << query.lastError().text();
+        return -1;
+    }
+
+    return query.lastInsertId().toInt();
+}
+
+void Database::deleteUser()
+{
+    QSqlQuery query;
+    query.prepare("DELETE FROM Users WHERE username = ?");
+    query.bindValue(0, username());
+    if (!query.exec())
+    {
+        qDebug() << query.lastError().text();
+        return;
+    }
+
+    setUsername("Guest");
+    setLoggedIn(false);
+}
+
 
 
 bool Database::connected() const

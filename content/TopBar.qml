@@ -110,6 +110,7 @@ Rectangle {
                             popUp.close()
                             loader.source = "content/ProfileSettings.qml"
                             menuItemClicked(0)
+                            menuIndex = 0
                         }
                     }
                 }
@@ -141,6 +142,7 @@ Rectangle {
                             popUp.close()
                             loader.source = "content/ProfileSettings.qml"
                             menuItemClicked(1)
+                            menuIndex = 1
                         }
                     }
                 }
@@ -172,6 +174,7 @@ Rectangle {
                             popUp.close()
                             loader.source = "content/ProfileSettings.qml"
                             menuItemClicked(2)
+                            menuIndex = 2
                         }
                     }
                 }
