@@ -167,17 +167,30 @@ Rectangle {
             Text {text: "Account Settings"}
         }
 
+
+
         ListView {
             id: lv
-            model: 2
+            model: lm
             spacing: 20
             clip: true
-            delegate: Rectangle {
-                width: 200
+            delegate:  Rectangle {
+                width: parent.width
                 height: 200
-                color: "blue"
+                /*
+                teacherTxt: Database.getTeacher(teacher_id)
+                courseTxt: Database.getCourse(course_id)
+                dateTxt: review_date
+                reviewTxt: review_text
+                qualityTtxt: quality
+                difficultyTxt: difficulty
+                */
+
+
+                Component.onCompleted: console.log(review_id)
             }
         }
+
     }
 
     Connections {
@@ -189,30 +202,16 @@ Rectangle {
 
     Component.onCompleted: {
         control.setCurrentIndex(menuIndex)
+        let reviews = Database.getUserReviews()
+        for (let i = 0; i < reviews.length; i++) {
+            lm.append(reviews[i])
+        }
     }
 
     ListModel {
         id: lm
-        ListElement {
-            m_id: 1
-            course_id: 1
-            teacher_id: 1
-            user_id: 60
-            quaulity: 5
-            difficulty: 5
-            review_text: "great"
-            review_date: "2024-08-09"
-        }
-
-        ListElement {
-            m_id: 2
-            course_id: 1
-            teacher_id: 2
-            user_id: 60
-            quaulity: 3
-            difficulty: 3
-            review_text: "ok"
-            review_date: "2024-08-09"
-        }
     }
+
+
+
 }

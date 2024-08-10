@@ -66,6 +66,9 @@ public slots:
     void setSchool(int id);
     int getUserId();
     void deleteUser();
+    QString getTeacher(int id);
+    QString getCourse(int id);
+    QVariantList getUserReviews();
 
 
 private:

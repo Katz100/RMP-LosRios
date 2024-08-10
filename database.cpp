@@ -232,8 +232,12 @@ int Database::getUserId()
         qDebug() << query.lastError().text();
         return -1;
     }
+    if (query.next())
+    {
+        return query.value(0).toInt();
+    }
 
-    return query.lastInsertId().toInt();
+    return -1;
 }
 
 void Database::deleteUser()
@@ -249,6 +253,70 @@ void Database::deleteUser()
 
     setUsername("Guest");
     setLoggedIn(false);
+}
+
+QString Database::getTeacher(int id)
+{
+    QSqlQuery query;
+    query.prepare("SELECT name FROM Teachers WHERE id = ?");
+    query.bindValue(0, id);
+    if (!query.exec())
+    {
+        qDebug() << query.lastError().text();
+        return QString("Error");
+    }
+    if (query.next())
+    {
+        return query.value(0).toString();
+    }
+
+    return QString("Error");
+}
+
+QString Database::getCourse(int id)
+{
+    QSqlQuery query;
+    query.prepare("SELECT name FROM Courses WHERE id = ?");
+    query.bindValue(0, id);
+    if (!query.exec())
+    {
+        qDebug() << query.lastError().text();
+        return QString("Error");
+    }
+    if (query.next())
+    {
+        return query.value(0).toString();
+    }
+    return QString("Error");
+}
+
+QVariantList Database::getUserReviews()
+{
+    QSqlQuery query;
+    query.prepare("SELECT * FROM Review WHERE user_id = ?");
+    query.bindValue(0, getUserId());
+    if (!query.exec())
+    {
+        qDebug() << query.lastError().text();
+        return QVariantList();
+    }
+
+
+    QVariantList reviews;
+    while (query.next())
+    {
+        QVariantMap review;
+        review.insert("review_id", query.value("id"));
+        review.insert("course_id", query.value("course_id"));
+        review.insert("teacher_id", query.value("teacher_id"));
+        review.insert("user_id", query.value("user_id"));
+        review.insert("quality", query.value("quality"));
+        review.insert("difficulty", query.value("difficulty"));
+        review.insert("review_text", query.value("review_text"));
+        review.insert("review_date", query.value("review_date"));
+        reviews.append(review);
+    }
+    return reviews;
 }
 
 
