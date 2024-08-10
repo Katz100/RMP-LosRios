@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import com.company.database
+//TODO: listview
 Rectangle {
     id: profileSettings
 
@@ -87,6 +88,8 @@ Rectangle {
         width: parent.width
         currentIndex: control.currentIndex
         anchors.top: control.bottom
+        anchors.bottom: parent.bottom
+
         Rectangle {
             id: profileTab
             GridLayout {
@@ -163,9 +166,17 @@ Rectangle {
             id: accountSettingsTab
             Text {text: "Account Settings"}
         }
-        Rectangle {
-            id: ratingsTab
-            Text {text: "Ratings"}
+
+        ListView {
+            id: lv
+            model: 2
+            spacing: 20
+            clip: true
+            delegate: Rectangle {
+                width: 200
+                height: 200
+                color: "blue"
+            }
         }
     }
 
@@ -178,5 +189,30 @@ Rectangle {
 
     Component.onCompleted: {
         control.setCurrentIndex(menuIndex)
+    }
+
+    ListModel {
+        id: lm
+        ListElement {
+            m_id: 1
+            course_id: 1
+            teacher_id: 1
+            user_id: 60
+            quaulity: 5
+            difficulty: 5
+            review_text: "great"
+            review_date: "2024-08-09"
+        }
+
+        ListElement {
+            m_id: 2
+            course_id: 1
+            teacher_id: 2
+            user_id: 60
+            quaulity: 3
+            difficulty: 3
+            review_text: "ok"
+            review_date: "2024-08-09"
+        }
     }
 }
