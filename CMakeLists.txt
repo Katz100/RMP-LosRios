@@ -30,6 +30,8 @@ qt_add_qml_module(appRMP_LosRios
     RESOURCES
     images/icons8-eye-24.png
     images/icons8-hide-24.png
+    QML_FILES content/Review.qml
+    SOURCES networkmanager.h networkmanager.cpp
 
 
 )

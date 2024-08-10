@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import com.company.database
-//TODO: listview
+//TODO: create .js file for lm
 Rectangle {
     id: profileSettings
 
@@ -174,20 +174,14 @@ Rectangle {
             model: lm
             spacing: 20
             clip: true
-            delegate:  Rectangle {
-                width: parent.width
-                height: 200
-                /*
+            delegate:  Review {
                 teacherTxt: Database.getTeacher(teacher_id)
                 courseTxt: Database.getCourse(course_id)
                 dateTxt: review_date
                 reviewTxt: review_text
-                qualityTtxt: quality
+                qualityTxt: quality
                 difficultyTxt: difficulty
-                */
 
-
-                Component.onCompleted: console.log(review_id)
             }
         }
 

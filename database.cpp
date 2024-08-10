@@ -293,6 +293,7 @@ QString Database::getCourse(int id)
 QVariantList Database::getUserReviews()
 {
     QSqlQuery query;
+    query.setForwardOnly(true);
     query.prepare("SELECT * FROM Review WHERE user_id = ?");
     query.bindValue(0, getUserId());
     if (!query.exec())
