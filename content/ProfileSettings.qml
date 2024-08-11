@@ -175,6 +175,10 @@ Rectangle {
             spacing: 20
             clip: true
             delegate:  Review {
+
+                width: parent.width
+                height: 80
+
                 teacherTxt: Database.getTeacher(teacher_id)
                 courseTxt: Database.getCourse(course_id)
                 dateTxt: review_date
