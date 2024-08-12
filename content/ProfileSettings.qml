@@ -176,8 +176,8 @@ Rectangle {
             clip: true
             delegate:  Review {
 
-                width: parent.width
-                height: 80
+                width: parent.width / 1.3
+                height: 280
 
                 teacherTxt: Database.getTeacher(teacher_id)
                 courseTxt: Database.getCourse(course_id)
