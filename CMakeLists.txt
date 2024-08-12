@@ -4,7 +4,7 @@ project(RMP_LosRios VERSION 0.1 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 6.4 REQUIRED COMPONENTS Quick Sql)
+find_package(Qt6 6.4 REQUIRED COMPONENTS Quick Sql Network)
 
 
 qt_standard_project_setup()
@@ -50,6 +50,7 @@ set_target_properties(appRMP_LosRios PROPERTIES
 target_link_libraries(appRMP_LosRios
     PRIVATE Qt6::Quick
     PRIVATE Qt6::Sql
+    PRIVATE Qt6::Network
 )
 
 

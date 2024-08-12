@@ -11,8 +11,8 @@ int main(int argc, char *argv[])
     Database* database = new Database(&app);
     qmlRegisterSingletonInstance("com.company.database", 1, 0, "Database", database);
 
-    NetWorkManager* test = new NetWorkManager(&app);
-    qDebug() << "Test: " << test->hasProfanity("what the shit");
+    NetWorkManager* network = new NetWorkManager(&app);
+    qmlRegisterSingletonInstance("com.company.network", 1, 0, "Network", network);
 
     QQmlApplicationEngine engine;
     const QUrl url(QStringLiteral("qrc:/RMP_LosRios/Main.qml"));
