@@ -29,7 +29,6 @@ bool NetWorkManager::hasProfanity(const QString &text)
         reply->deleteLater();
 
         double prediction = ResponseObject["prediction"].toDouble();
-        qDebug() << "prediction: " << prediction;
         return (prediction > 0.7);
     }
 

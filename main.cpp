@@ -2,7 +2,7 @@
 #include <QQmlApplicationEngine>
 #include "database.h"
 #include "networkmanager.h"
-
+#include <QtQml/QQmlContext>
 
 int main(int argc, char *argv[])
 {
@@ -15,6 +15,7 @@ int main(int argc, char *argv[])
     qmlRegisterSingletonInstance("com.company.network", 1, 0, "Network", network);
 
     QQmlApplicationEngine engine;
+
     const QUrl url(QStringLiteral("qrc:/RMP_LosRios/Main.qml"));
     QObject::connect(
         &engine,

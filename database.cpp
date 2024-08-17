@@ -23,6 +23,9 @@ Database::Database(QObject *parent)
         setConnected(false);
     }
 
+  //  getTeacherNameSuggestions();
+  //  SuggestionModel.setStringList(m_suggestions);
+
 }
 
 //return true if succesfully connected to database, otherwise, return false.
@@ -319,6 +322,24 @@ QVariantList Database::getUserReviews()
     }
     return reviews;
 }
+
+void Database::getTeacherNameSuggestions()
+{
+    QSqlQuery query;
+    query.setForwardOnly(true);
+    query.prepare("SELECT name FROM Teachers");
+    if(!query.exec())
+    {
+        qDebug() << query.lastError().text();
+        return;
+    }
+
+    while (query.next())
+    {
+        m_suggestions << query.value("name").toString();
+    }
+}
+
 
 
 

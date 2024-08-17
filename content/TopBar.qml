@@ -3,6 +3,7 @@ import QtQuick.Layouts
 import QtQuick.Controls
 import com.company.database
 
+
 //TODO: Create custom component for menu items
 Rectangle {
     anchors {
@@ -21,7 +22,7 @@ Rectangle {
             Layout.preferredWidth: parent.width / 3
             Layout.preferredHeight: 25
             Layout.leftMargin: 10
-            background: Rectangle {
+         background: Rectangle {
                 radius: 20
             }
             Keys.onReturnPressed: {
@@ -31,6 +32,8 @@ Rectangle {
                 }
             }
         }
+
+
 
 
 

@@ -6,6 +6,8 @@
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QCryptographicHash>
+#include <QStringListModel>
+#include <QSortFilterProxyModel>
 
 class Database : public QObject
 {
@@ -16,6 +18,7 @@ public:
     Q_PROPERTY(QString username READ username WRITE setUsername NOTIFY usernameChanged FINAL)
     Q_PROPERTY(bool loggedIn READ loggedIn WRITE setLoggedIn NOTIFY loggedInChanged FINAL)
     Q_PROPERTY(bool connected READ connected WRITE setConnected NOTIFY connectedChanged FINAL)
+    QStringListModel SuggestionModel;
 
     enum class UserRole
     {
@@ -69,6 +72,7 @@ public slots:
     QString getTeacher(int id);
     QString getCourse(int id);
     QVariantList getUserReviews();
+    void getTeacherNameSuggestions();
 
 
 private:
@@ -76,6 +80,7 @@ private:
     QString m_username = "Guest";
     bool m_loggedIn = false;
     bool m_connected = true;
+    QStringList m_suggestions;
 };
 
 #endif // DATABASE_H
