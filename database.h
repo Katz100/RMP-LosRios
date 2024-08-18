@@ -72,6 +72,7 @@ public slots:
     QString getTeacher(int id);
     QString getCourse(int id);
     QVariantList getUserReviews();
+    QVariantList getTeachers(const QString& teacher_name);
     void getTeacherNameSuggestions();
 
 

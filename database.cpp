@@ -323,6 +323,30 @@ QVariantList Database::getUserReviews()
     return reviews;
 }
 
+QVariantList Database::getTeachers(const QString &teacher_name)
+{
+    QSqlQuery query;
+    QString searchPattern = "%" + teacher_name + "%";
+    query.prepare("SELECT * FROM Teachers WHERE name LIKE ?");
+    query.bindValue(0, searchPattern);
+    if (!query.exec())
+    {
+        qDebug() << query.lastError().text();
+        return QVariantList();
+    }
+
+    QVariantList teachers;
+    while (query.next())
+    {
+        QVariantMap teacher;
+        teacher.insert("teacher_id", query.value("id"));
+        teacher.insert("name", query.value("name"));
+        teachers.append(teacher);
+    }
+    qDebug() << teachers;
+    return teachers;
+}
+
 void Database::getTeacherNameSuggestions()
 {
     QSqlQuery query;

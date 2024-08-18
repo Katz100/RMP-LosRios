@@ -32,7 +32,7 @@ qt_add_qml_module(appRMP_LosRios
     images/icons8-hide-24.png
     QML_FILES content/Review.qml
     SOURCES networkmanager.h networkmanager.cpp
-    QML_FILES TextFieldWithCompleter.qml
+    QML_FILES DataModel.js
 
 
 )

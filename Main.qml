@@ -2,6 +2,8 @@ import QtQuick
 import QtQuick.Controls
 import QtCore
 import "content"
+import com.company.database
+import "DataModel.js" as DataModel
 Window {
     id: window
     width: 640
@@ -11,11 +13,16 @@ Window {
 
     signal menuItemClicked(var index)
     property int menuIndex: 0
+
     Settings {
         id: settings
         property string username: ""
         property string password: ""
         property int checkValue: Qt.Unchecked
+    }
+
+    ListModel {
+        id: teacherModel
     }
 
     TopBar {
