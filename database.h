@@ -8,6 +8,7 @@
 #include <QCryptographicHash>
 #include <QStringListModel>
 #include <QSortFilterProxyModel>
+#include <QRandomGenerator>
 
 class Database : public QObject
 {
@@ -62,7 +63,7 @@ public slots:
     bool validateLogin(const QString& username, const QString& password);
     void loginUser(const QString& username);
     bool isUsernameTaken(const QString& username);
-    void registerUser(const QString& username, const QString& password);
+    void registerUser(const QString& username, const QString& password, const QString& salt);
     void logout();
     int getSchoolId();
     void changeUsername(const QString& new_username);
@@ -71,6 +72,8 @@ public slots:
     void deleteUser();
     QString getTeacher(int id);
     QString getCourse(int id);
+    QString generateSalt();
+    QString getUserSalt(const QString& username);
     QVariantList getUserReviews();
     QVariantList getTeachers(const QString& teacher_name);
     void getTeacherNameSuggestions();

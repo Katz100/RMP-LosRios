@@ -5,7 +5,7 @@ import Qt5Compat.GraphicalEffects
 
 import com.company.database
 
-//TODO: remember me logic
+//TODO: fix capitalization bug
 
 Rectangle {
     property bool __txtVisible: false
@@ -72,8 +72,8 @@ Rectangle {
                     if(!Database.isConnected()) {
                         Database.connectToDatabase()
                     }
-
-                    if (usernameField.text === "" || passwordField.text === "" || !Database.validateLogin((usernameField.text).toLowerCase(), Database.hashPassword(passwordField.text))) {
+                    //TODO: implement Database.getUserSalt()
+                    if (usernameField.text === "" || passwordField.text === "" || !Database.validateLogin((usernameField.text).toLowerCase(), Database.hashPassword(passwordField.text + Database.getUserSalt(usernameField.text)))) {
                         __txtVisible = true
                     } else {
                         Database.loginUser(usernameField.text)

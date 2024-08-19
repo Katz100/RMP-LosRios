@@ -125,13 +125,14 @@ bool Database::isUsernameTaken(const QString &username)
     return false;
 }
 
-void Database::registerUser(const QString &username, const QString &password)
+void Database::registerUser(const QString &username, const QString &password, const QString &salt)
 {
     QSqlQuery query;
-    query.prepare("INSERT INTO Users (id, username, password) VALUES"
-                  "(DEFAULT, ?, ?);");
+    query.prepare("INSERT INTO Users (id, username, password, salt) VALUES"
+                  "(DEFAULT, ?, ?, ?);");
     query.bindValue(0, username);
     query.bindValue(1, password);
+    query.bindValue(2, salt);
     int id;
     if (!query.exec())
     {
@@ -291,6 +292,28 @@ QString Database::getCourse(int id)
         return query.value(0).toString();
     }
     return QString("Error");
+}
+
+QString Database::generateSalt()
+{
+    return QString::number(QRandomGenerator::global()->generate());
+}
+
+QString Database::getUserSalt(const QString &username)
+{
+    QSqlQuery query;
+    query.prepare("SELECT salt FROM Users WHERE username = ?");
+    query.bindValue(0, username);
+    if (!query.exec())
+    {
+        qDebug() << query.lastError().text();
+        return QString("Error");
+    }
+    if (query.next())
+    {
+        return query.value(0).toString();
+    }
+    return QString("error");
 }
 
 QVariantList Database::getUserReviews()

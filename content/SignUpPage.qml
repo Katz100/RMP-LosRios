@@ -64,12 +64,10 @@ Rectangle {
                         txtVisible = true
                         invalidString = "Username/Password cannot contain whitespace"
                     } else {
-                        Database.registerUser((usernameField.text).toLowerCase(), Database.hashPassword(passwordField.text))
+                        //TODO: implement generateSalt(), redo registerUser()
+                        let salt = Database.generateSalt()
+                        Database.registerUser((usernameField.text).toLowerCase(), Database.hashPassword(passwordField.text + salt), salt)
                         Database.loginUser(usernameField.text)
-                        txtVisible = false
-                        usernameField.text = ""
-                        passwordField.text = ""
-                        repeatPassword.text = ""
                         loader.source = "content/HomePage.qml"
                     }
                 }
