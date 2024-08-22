@@ -22,9 +22,7 @@ Rectangle {
             Layout.preferredWidth: parent.width / 3
             Layout.preferredHeight: 25
             Layout.leftMargin: 10
-         background: Rectangle {
-                radius: 20
-            }
+
             Keys.onReturnPressed: {
                 if (searchField.text !== "") {
                     console.log("Enter pressed with input: " + searchField.text)

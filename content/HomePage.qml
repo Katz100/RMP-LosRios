@@ -24,14 +24,12 @@ Rectangle {
             Layout.preferredWidth: parent.width / 3
             Layout.preferredHeight: 25
             Layout.alignment: Qt.AlignCenter
-         background: Rectangle {
-                radius: 20
-                border.color: "black"
-            }
+
             Keys.onReturnPressed: {
                 if (searchField.text !== "") {
                     console.log("Enter pressed with input: " + searchField.text)
                     DataModel.searchTeachers(searchField.text)
+                    DataModel.setTeacherName(searchField.text)
                     searchField.text = ""
                     loader.source = "SearchResults.qml"
                 }

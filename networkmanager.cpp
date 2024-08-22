@@ -32,6 +32,35 @@ bool NetWorkManager::hasProfanity(const QString &text)
         return (prediction > 0.7);
     }
 
-    return false;
+    return true;
+
+}
+
+bool NetWorkManager::usernameHasProfanity(const QString &username)
+{
+    m_request.setUrl(QUrl("https://vector.profanity.dev"));
+
+    QJsonObject json;
+    json["message"] = username;
+    QJsonDocument doc(json);
+    QByteArray data = doc.toJson();
+    QNetworkReply* reply= m_manager.post(m_request, data);
+
+    QEventLoop eventLoop;
+    connect(reply, &QNetworkReply::finished, &eventLoop, &QEventLoop::quit);
+    eventLoop.exec();
+
+    if (reply->error() == QNetworkReply::NoError)
+    {
+        QByteArray response = reply->readAll();
+        QJsonDocument jsonDoc = QJsonDocument::fromJson(response);
+        QJsonObject responseObject = jsonDoc.object();
+
+        reply->deleteLater();
+
+        return responseObject["isProfanity"].toBool();
+    }
+
+    return true;
 
 }

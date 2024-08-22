@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
 import com.company.database
+import com.company.network
 
 Rectangle {
     property bool txtVisible: false
@@ -63,6 +64,9 @@ Rectangle {
                     } else if (/\s/.test(usernameField.text) || /\s/.test(passwordField.text)) {
                         txtVisible = true
                         invalidString = "Username/Password cannot contain whitespace"
+                    } else if (Network.usernameHasProfanity(usernameField.text)) {
+                        txtVisible = true
+                        invalidString = "Username cannot contain profanity"
                     } else {
                         //TODO: implement generateSalt(), redo registerUser()
                         let salt = Database.generateSalt()

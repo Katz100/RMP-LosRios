@@ -59,24 +59,28 @@ signals:
 public slots:
     bool connectToDatabase();
     bool isConnected();
-    QString hashPassword(const QString& password);
     bool validateLogin(const QString& username, const QString& password);
-    void loginUser(const QString& username);
     bool isUsernameTaken(const QString& username);
+
+    void loginUser(const QString& username);
     void registerUser(const QString& username, const QString& password, const QString& salt);
     void logout();
-    int getSchoolId();
     void changeUsername(const QString& new_username);
     void setSchool(int id);
-    int getUserId();
     void deleteUser();
+    void getTeacherNameSuggestions();
+
+    int getUserId();
+    int getSchoolId();
+
     QString getTeacher(int id);
     QString getCourse(int id);
     QString generateSalt();
     QString getUserSalt(const QString& username);
+    QString hashPassword(const QString& password);
+
     QVariantList getUserReviews();
     QVariantList getTeachers(const QString& teacher_name);
-    void getTeacherNameSuggestions();
 
 
 private:

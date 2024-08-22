@@ -72,7 +72,6 @@ Rectangle {
                     if(!Database.isConnected()) {
                         Database.connectToDatabase()
                     }
-                    //TODO: implement Database.getUserSalt()
                     if (usernameField.text === "" || passwordField.text === "" || !Database.validateLogin((usernameField.text).toLowerCase(), Database.hashPassword(passwordField.text + Database.getUserSalt(usernameField.text)))) {
                         __txtVisible = true
                     } else {

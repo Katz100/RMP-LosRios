@@ -14,3 +14,7 @@ function searchTeachers(teacher_name) {
 function isTeacherModelEmpty() {
     return teacherModel.count === 0
 }
+
+function setTeacherName(term) {
+    teacherName = term
+}

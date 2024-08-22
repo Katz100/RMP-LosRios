@@ -20,6 +20,7 @@ signals:
 
 public slots:
     bool hasProfanity(const QString& text);
+    bool usernameHasProfanity(const QString& username);
 private:
     QNetworkAccessManager m_manager;
     QNetworkRequest m_request;
