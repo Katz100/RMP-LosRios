@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 import com.company.database
-
+import "../DataModel.js" as DataModel
 
 //TODO: Create custom component for menu items
 Rectangle {
@@ -25,7 +25,10 @@ Rectangle {
 
             Keys.onReturnPressed: {
                 if (searchField.text !== "") {
-                    console.log("Enter pressed with input: " + searchField.text)
+                    if (loader.source !== "content/SearchResults.qml") {
+                        loader.source = "content/SearchResults.qml"
+                    }
+                    DataModel.searchTeachers(searchField.text)
                     searchField.text = ""
                 }
             }

@@ -31,7 +31,7 @@ Rectangle {
                     DataModel.searchTeachers(searchField.text)
                     DataModel.setTeacherName(searchField.text)
                     searchField.text = ""
-                    loader.source = "SearchResults.qml"
+                    loader.source = "content/SearchResults.qml"
                 }
             }
         }
