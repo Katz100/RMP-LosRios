@@ -209,7 +209,4 @@ Rectangle {
     ListModel {
         id: lm
     }
-
-
-
 }

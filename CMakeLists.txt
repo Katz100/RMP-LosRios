@@ -34,6 +34,7 @@ qt_add_qml_module(appRMP_LosRios
     SOURCES networkmanager.h networkmanager.cpp
     QML_FILES DataModel.js
     QML_FILES content/SearchResults.qml
+    QML_FILES content/TeacherResult.qml
 
 
 )
