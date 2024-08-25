@@ -178,6 +178,63 @@ int Database::getSchoolId()
     return -1;
 }
 
+int Database::countTeacherRatings(int teacher_id)
+{
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM Review WHERE teacher_id = ?");
+    query.bindValue(0, teacher_id);
+    if (!query.exec())
+    {
+        qDebug() << query.lastError().text();
+        return -1;
+    }
+
+    if (query.next())
+    {
+        return query.value(0).toInt();
+    }
+
+    return -1;
+}
+
+double Database::getAverageRating(int teacher_id)
+{
+    QSqlQuery query;
+    query.prepare("SELECT AVG(quality)::NUMERIC(10, 1) FROM Review WHERE teacher_id = ?");
+    query.bindValue(0, teacher_id);
+    if (!query.exec())
+    {
+        qDebug() << query.lastError().text();
+        return -1.0;
+    }
+
+    if (query.next())
+    {
+        return query.value(0).toDouble();
+    }
+
+    return -1.0;
+}
+
+double Database::getAverageDifficulty(int teacher_id)
+{
+    QSqlQuery query;
+    query.prepare("SELECT AVG(difficulty)::NUMERIC(10, 1) FROM Review WHERE teacher_id = ?");
+    query.bindValue(0, teacher_id);
+    if (!query.exec())
+    {
+        qDebug() << query.lastError().text();
+        return -1.0;
+    }
+
+    if (query.next())
+    {
+        return query.value(0).toDouble();
+    }
+
+    return -1.0;
+}
+
 void Database::changeUsername(const QString &new_username)
 {
     QSqlQuery query;

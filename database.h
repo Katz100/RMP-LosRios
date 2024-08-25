@@ -72,6 +72,10 @@ public slots:
 
     int getUserId();
     int getSchoolId();
+    int countTeacherRatings(int teacher_id);
+
+    double getAverageRating(int teacher_id);
+    double getAverageDifficulty(int teacher_id);
 
     QString getTeacher(int id);
     QString getCourse(int id);
