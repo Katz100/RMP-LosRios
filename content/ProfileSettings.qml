@@ -176,6 +176,7 @@ Rectangle {
             clip: true
             delegate:  Review {
 
+                //fix TypeError
                 width: parent.width / 1.3
                 height: 280
 

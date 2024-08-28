@@ -68,7 +68,6 @@ Rectangle {
                         txtVisible = true
                         invalidString = "Username cannot contain profanity"
                     } else {
-                        //TODO: implement generateSalt(), redo registerUser()
                         let salt = Database.generateSalt()
                         Database.registerUser((usernameField.text).toLowerCase(), Database.hashPassword(passwordField.text + salt), salt)
                         Database.loginUser(usernameField.text)
