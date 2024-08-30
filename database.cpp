@@ -423,7 +423,6 @@ QVariantList Database::getTeachers(const QString &teacher_name)
         teacher.insert("name", query.value("name"));
         teachers.append(teacher);
     }
-    qDebug() << teachers;
     return teachers;
 }
 

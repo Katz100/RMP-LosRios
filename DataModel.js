@@ -1,4 +1,5 @@
 var teacherName = ""
+var teacherId
 
 function searchTeachers(teacher_name) {
     if(!isTeacherModelEmpty()) {
@@ -17,4 +18,17 @@ function isTeacherModelEmpty() {
 
 function setTeacherName(term) {
     teacherName = term
+}
+
+function setTeacherSource(id, name) {
+    teacherName = name
+    teacherId = id
+}
+
+function getTeacherName() {
+    return teacherName
+}
+
+function getTeacherId() {
+    return teacherId
 }

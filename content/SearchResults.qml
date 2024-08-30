@@ -1,6 +1,6 @@
 import QtQuick
 import com.company.database
-
+import "../DataModel.js" as DataModel
 
 Rectangle {
     ListView {
@@ -16,6 +16,16 @@ Rectangle {
             ratingsTxt: Database.countTeacherRatings(teacher_id) + " ratings"
             teacherTxt: name
             difficultyTxt: Database.getAverageDifficulty(teacher_id) + " difficulty"
+
+            MouseArea {
+                anchors.fill: parent
+                hoverEnabled: true
+                cursorShape: Qt.PointingHandCursor
+                onClicked: {
+                    DataModel.setTeacherSource(teacher_id, name)
+                    loader.source = "content/TeacherReviews"
+                }
+            }
         }
     }
 }
