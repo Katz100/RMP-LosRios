@@ -13,6 +13,8 @@ Window {
 
     signal menuItemClicked(var index)
     property int menuIndex: 0
+    property string teacherName: ""
+    property int teacherId: 0
 
     Settings {
         id: settings

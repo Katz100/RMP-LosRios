@@ -10,6 +10,7 @@ Rectangle {
         spacing: 20
         clip: true
         delegate: TeacherResult {
+            //TODO: fix TypeError
             width: parent.width / 1.3
             height: 150
             qualityTxt: Database.getAverageRating(teacher_id)
@@ -23,7 +24,7 @@ Rectangle {
                 cursorShape: Qt.PointingHandCursor
                 onClicked: {
                     DataModel.setTeacherSource(teacher_id, name)
-                    loader.source = "content/TeacherReviews"
+                    loader.source = "content/TeacherReviews.qml"
                 }
             }
         }

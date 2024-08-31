@@ -1,5 +1,4 @@
-var teacherName = ""
-var teacherId
+
 
 function searchTeachers(teacher_name) {
     if(!isTeacherModelEmpty()) {
