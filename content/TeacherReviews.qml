@@ -5,26 +5,29 @@ import "../DataModel.js" as DataModel
 
 Rectangle {
     GridLayout {
-        anchors {left: parent.left; top: parent.top; leftMargin: 30; topMargin: 30}
+        anchors {left: parent.left; top: parent.top; right: parent.right; leftMargin: 30; topMargin: 30}
         columnSpacing: 30
-        columns: 2
+        columns: 4
+
+        Item {Layout.row: 0; Layout.column: 0; Layout.fillWidth: true}
         Text {
             id: rating
-            Layout.row: 1
-            text: Database.getAverageRating(DataModel.getTeacherId()) + "/5"
+            Layout.row: 0
+            Layout.column: 1
+            text: "<b>%1</b>/5<br>Quality Based on %2 ratings<br>%3".arg(Database.getAverageRating(DataModel.getTeacherId()))
+                                                         .arg(Database.countTeacherRatings(DataModel.getTeacherId()))
+                                                         .arg(DataModel.getTeacherName())
         }
 
-        Text {
-            id: count
-            Layout.row: 2
-            text: "Quality Based on " + Database.countTeacherRatings(DataModel.getTeacherId()) + " ratings"
+        Rectangle {
+            width: 400
+            height: 100
+            color: "lightgray"
+            Layout.column: 2
+            Layout.row: 0
         }
 
-        Text {
-            id: name
-            Layout.row: 3
-            text: DataModel.getTeacherName()
-        }
+        Item {Layout.row: 0; Layout.column: 3;Layout.fillWidth: true}
 
     }
 
