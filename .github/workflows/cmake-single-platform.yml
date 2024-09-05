@@ -32,15 +32,12 @@ jobs:
 
   # Step to clone the `TestClasses` project repository (if it's a separate repository)
     - name: Checkout TestClasses repository
-      uses: actions/checkout@v3
-      with:
-        repository: Katz100/UnitTestRMP
-        path: https://github.com/Katz100/UnitTestRMP # Change this to your specific repository URL
+      run: git clone https://github.com/Katz100/UnitTestRMP.git TestClasses
           
       # Build the TestClasses project if needed
     - name: Build TestClasses
       run: |
-        cd ../TestClasses
+        cd /TestClasses
         cmake -S . -B build -G "Ninja Multi-Config" && \
         cmake --build build --config Debug
           
