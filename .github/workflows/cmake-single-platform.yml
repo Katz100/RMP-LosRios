@@ -31,7 +31,7 @@ jobs:
       - name: Clone TestClasses repo
         run: git clone https://github.com/Katz100/UnitTestRMP.git TestClasses
 
-      # Build TestClasses Project
+      # Build TestClasses Projec
       - name: Build TestClasses project
         run: |
           mkdir build
