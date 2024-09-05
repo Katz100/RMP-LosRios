@@ -1,15 +1,15 @@
 #include "database.h"
-#include "config.h"
+//#include "config.h"
 
 Database::Database(QObject *parent)
     : QObject{parent}
 {
     db_connection = QSqlDatabase::addDatabase("QPSQL");
-    db_connection.setHostName(host);
+    db_connection.setHostName("host");
     db_connection.setDatabaseName("Rmp-Test");
     db_connection.setPort(5432);
     db_connection.setUserName("postgres");
-    db_connection.setPassword(password);
+    db_connection.setPassword("password");
 
     bool ok = db_connection.open();
 
