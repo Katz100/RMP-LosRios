@@ -46,6 +46,6 @@ jobs:
           
       # Running the tests
     - name: Run Tests
-        run: |
-          cd TestClasses/build
-          ctest --output-on-failure
+      run: |
+        cd TestClasses/build
+        ctest --output-on-failure
