@@ -29,7 +29,7 @@ jobs:
 
       # Clone the TestClasses repository
       - name: Clone TestClasses repo
-        run: git clone https://github.com/Katz100/UnitTestRMP.git
+        run: git clone https://github.com/Katz100/UnitTestRMP.git TestClasses
 
       # Build TestClasses Project
       - name: Build TestClasses project
