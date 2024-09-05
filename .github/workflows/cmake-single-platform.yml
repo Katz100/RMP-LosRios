@@ -25,4 +25,19 @@ jobs:
 
       - uses: ilammy/msvc-dev-cmd@v1
       
-      - uses: actions/checkout@v3  # Check out the sources for RMP_LosRios
+      - uses: actions/checkout@v3
+      # Build TestClasses Project
+      - name: Build TestClasses project
+        run: |
+          mkdir build
+          cd build
+          cmake ../TestClasses
+          cmake --build .
+        if: ${{ matrix.os == 'ubuntu-latest' || matrix.os == 'windows-latest' }}
+
+      # Run Unit Tests
+      - name: Run Unit Tests
+        run: |
+          cd build
+          ctest --output-on-failure
+        if: ${{ matrix.os == 'ubuntu-latest' || matrix.os == 'windows-latest' }} 
