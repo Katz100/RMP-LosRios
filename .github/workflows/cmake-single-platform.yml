@@ -25,6 +25,9 @@ jobs:
 
       - uses: ilammy/msvc-dev-cmd@v1
 
+      - uses: actions/checkout@v3
+
+
       # Clone the TestClasses repository
       - name: Clone TestClasses repo
         run: git clone https://github.com/Katz100/UnitTestRMP.git TestClasses
