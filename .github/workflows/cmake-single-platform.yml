@@ -37,7 +37,7 @@ jobs:
       # Build the TestClasses project if needed
     - name: Build TestClasses
       run: |
-        cd /TestClasses
+        cd ../TestClasses
         cmake -S . -B build -G "Ninja Multi-Config" && \
         cmake --build build --config Debug
           
