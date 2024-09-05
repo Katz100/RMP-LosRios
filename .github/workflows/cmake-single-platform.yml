@@ -34,8 +34,8 @@ jobs:
     - name: Checkout TestClasses repository
       uses: actions/checkout@v3
       with:
-        repository: <TestClasses-repo-url>
-        path: TestClasses # Change this to your specific repository URL
+        repository: UnitTestsRMO
+        path: https://github.com/Katz100/UnitTestRMP # Change this to your specific repository URL
           
       # Build the TestClasses project if needed
     - name: Build TestClasses
