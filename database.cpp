@@ -1,6 +1,6 @@
 #include "database.h"
 //#include "config.h"
-
+//test
 Database::Database(QObject *parent)
     : QObject{parent}
 {
