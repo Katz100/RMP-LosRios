@@ -29,3 +29,23 @@ jobs:
       # We don't need to set up the environment variable for CMake to see Qt because the install-qt-action
       # sets up the necessary variables automatically
       run: cmake -S . -B build -G "Ninja Multi-Config" && cmake --build build --config Debug
+
+  # Step to clone the `TestClasses` project repository (if it's a separate repository)
+    - name: Checkout TestClasses repository
+      uses: actions/checkout@v3
+      with:
+        repository: <TestClasses-repo-url>
+        path: TestClasses # Change this to your specific repository URL
+          
+      # Build the TestClasses project if needed
+    - name: Build TestClasses
+      run: |
+        cd TestClasses
+        cmake -S . -B build -G "Ninja Multi-Config" && \
+        cmake --build build --config Debug
+          
+      # Running the tests
+    - name: Run Tests
+        run: |
+          cd TestClasses/build
+          ctest --output-on-failure
