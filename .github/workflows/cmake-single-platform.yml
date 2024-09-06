@@ -1,0 +1,49 @@
+name: CI
+
+on: push
+
+jobs:
+  build_and_test:
+    name: "Build and test"
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Install dependencies (linux)
+        run: sudo apt install ninja-build
+        if: matrix.os == 'ubuntu-latest'
+
+      - name: Install Ninja (windows)
+        run: choco install ninja
+        if: matrix.os == 'windows-latest'
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '6.5.2'
+
+      - uses: ilammy/msvc-dev-cmd@v1
+
+      - uses: actions/checkout@v3
+
+
+      # Clone the TestClasses repository
+      - name: Clone TestClasses repo
+        run: git clone https://github.com/Katz100/UnitTestRMP.git TestClasses
+
+      # Build TestClasses Projec
+      - name: Build TestClasses project
+        run: |
+          mkdir build
+          cd build
+          cmake ../TestClasses
+          cmake --build .
+        if: ${{ matrix.os == 'ubuntu-latest' || matrix.os == 'windows-latest' }}
+
+      # Run Unit Tests
+      - name: Run Unit Tests
+        run: |
+          cd build
+          ctest --output-on-failure
+        if: ${{ matrix.os == 'ubuntu-latest' || matrix.os == 'windows-latest' }} 
