@@ -197,6 +197,26 @@ int Database::countTeacherRatings(int teacher_id)
     return -1;
 }
 
+int Database::getRatings(int teacher_id, int rating_number)
+{
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM Review WHERE teacher_id = ? AND quality = ?");
+    query.bindValue(0, teacher_id);
+    query.bindValue(1, rating_number);
+    if (!query.exec())
+    {
+        qDebug() << query.lastError().text();
+        return -1;
+    }
+
+    if (query.next())
+    {
+        return query.value(0).toInt();
+    }
+
+    return -1;
+}
+
 double Database::getAverageRating(int teacher_id)
 {
     QSqlQuery query;

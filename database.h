@@ -73,6 +73,7 @@ public slots:
     int getUserId();
     int getSchoolId();
     int countTeacherRatings(int teacher_id);
+    int getRatings(int teacher_id, int rating_number);
 
     double getAverageRating(int teacher_id);
     double getAverageDifficulty(int teacher_id);
