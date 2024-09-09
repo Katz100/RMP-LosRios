@@ -3,7 +3,6 @@ import QtQuick.Layouts
 import com.company.database
 import "../DataModel.js" as DataModel
 
-//TODO: implement Database.getRatings()
 Rectangle {
     GridLayout {
         anchors {left: parent.left; top: parent.top; right: parent.right; leftMargin: 30; topMargin: 30}

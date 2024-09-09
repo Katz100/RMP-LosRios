@@ -16,6 +16,17 @@ Rectangle {
 
     RowLayout {
         anchors.fill: parent
+
+        Button {
+            text: "Home"
+            Layout.preferredWidth: usernameRect.width
+            onClicked: {
+                loader.source = "content/HomePage.qml"
+            }
+        }
+
+        Item {Layout.fillWidth: true}
+
         TextField {
             id: searchField
             placeholderText: "Professor name"
@@ -34,9 +45,7 @@ Rectangle {
             }
         }
 
-
-
-
+        Item {Layout.fillWidth: true}
 
         Rectangle {
             id: usernameRect
