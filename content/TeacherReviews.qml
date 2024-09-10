@@ -35,9 +35,14 @@ Rectangle {
                     text: "Awesome <b>5</b>"
                 }
                 Rectangle {
-                    color: "blue"
+                    color: "gray"
                     Layout.fillWidth: true
                     height: 20
+                    Rectangle {
+                        color: "blue"
+                        height: parent.height
+                        width: getBarLength(5) * parent.width
+                    }
                 }
                 Text {
                     text: Database.getRatings(DataModel.getTeacherId(), 5)
@@ -48,9 +53,15 @@ Rectangle {
                     text: "Great <b>4</b>"
                 }
                 Rectangle {
-                    color: "blue"
+                    color: "gray"
                     Layout.fillWidth: true
                     height: 20
+
+                    Rectangle {
+                        color: "blue"
+                        height: parent.height
+                        width: getBarLength(4) * parent.width
+                    }
                 }
                 Text {
                     text: Database.getRatings(DataModel.getTeacherId(), 4)
@@ -61,9 +72,15 @@ Rectangle {
                     text: "Good <b>3</b>"
                 }
                 Rectangle {
-                    color: "blue"
+                    color: "gray"
                     Layout.fillWidth: true
                     height: 20
+
+                    Rectangle {
+                        color: "blue"
+                        height: parent.height
+                        width: getBarLength(3) * parent.width
+                    }
                 }
                 Text {
                     text: Database.getRatings(DataModel.getTeacherId(), 3)
@@ -74,9 +91,15 @@ Rectangle {
                     text: "OK <b>2</b>"
                 }
                 Rectangle {
-                    color: "blue"
+                    color: "gray"
                     Layout.fillWidth: true
                     height: 20
+
+                    Rectangle {
+                        color: "blue"
+                        height: parent.height
+                        width: getBarLength(2) * parent.width
+                    }
                 }
                 Text {
                     text: Database.getRatings(DataModel.getTeacherId(), 2)
@@ -87,9 +110,15 @@ Rectangle {
                     text: "Awful <b>1</b>"
                 }
                 Rectangle {
-                    color: "blue"
+                    color: "gray"
                     Layout.fillWidth: true
                     height: 20
+
+                    Rectangle {
+                        color: "blue"
+                        height: parent.height
+                        width: getBarLength(1) * parent.width
+                    }
                 }
                 Text {
                     text: Database.getRatings(DataModel.getTeacherId(), 1)
@@ -102,4 +131,7 @@ Rectangle {
 
     }
 
+    function getBarLength(rating) {
+       return (Database.getRatings(DataModel.getTeacherId(), rating) / Database.countTeacherRatings(DataModel.getTeacherId()))
+    }
 }
