@@ -88,7 +88,7 @@ Rectangle {
                 border.width: 1
             }
 
-            x: usernameRect.x - usernameRect.implicitWidth - 30
+            x: usernameRect.x - usernameRect.implicitWidth - 70
             y: usernameRect.y + usernameRect.implicitHeight + 30
 
             ColumnLayout {

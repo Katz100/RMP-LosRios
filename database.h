@@ -85,6 +85,7 @@ public slots:
     QString hashPassword(const QString& password);
 
     QVariantList getUserReviews();
+    QVariantList getTeacherReviews(int teacher_id);
     QVariantList getTeachers(const QString& teacher_name);
 
 

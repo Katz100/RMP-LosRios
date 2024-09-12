@@ -2,7 +2,6 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import com.company.database
-//TODO: create .js file for lm
 Rectangle {
     id: profileSettings
 

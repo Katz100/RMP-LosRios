@@ -423,6 +423,36 @@ QVariantList Database::getUserReviews()
     return reviews;
 }
 
+QVariantList Database::getTeacherReviews(int teacher_id)
+{
+    QSqlQuery query;
+    query.setForwardOnly(true);
+    query.prepare("SELECT * FROM Review WHERE teacher_id = ?");
+    query.bindValue(0, teacher_id);
+    if (!query.exec())
+    {
+        qDebug() << query.lastError().text();
+        return QVariantList();
+    }
+
+
+    QVariantList reviews;
+    while (query.next())
+    {
+        QVariantMap review;
+        review.insert("review_id", query.value("id"));
+        review.insert("course_id", query.value("course_id"));
+        review.insert("teacher_id", query.value("teacher_id"));
+        review.insert("user_id", query.value("user_id"));
+        review.insert("quality", query.value("quality"));
+        review.insert("difficulty", query.value("difficulty"));
+        review.insert("review_text", query.value("review_text"));
+        review.insert("review_date", query.value("review_date"));
+        reviews.append(review);
+    }
+    return reviews;
+}
+
 QVariantList Database::getTeachers(const QString &teacher_name)
 {
     QSqlQuery query;
