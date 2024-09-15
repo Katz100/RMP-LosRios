@@ -6,7 +6,7 @@
   <li>Use Qt Creator to clone this repo.</li>
   <li>Add the header file, config.h, if necessary.</li>
   <li>Add a remote repository to your project. Tools > git > Remote Repository > Manage Remotes
-  <li>Install PostgreSQL 16.</li>
+  <li>Install PostgreSQL 16. (If you need to use class methods from database.h)</li>
   <li>Add these directories to your Path variables.</li>
   <pre><code>C:\Program Files\PostgreSQL\16\bin</code></pre>
   <pre><code>C:\Program Files\PostgreSQL\16\include</code></pre>
