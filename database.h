@@ -19,7 +19,6 @@ public:
     Q_PROPERTY(QString username READ username WRITE setUsername NOTIFY usernameChanged FINAL)
     Q_PROPERTY(bool loggedIn READ loggedIn WRITE setLoggedIn NOTIFY loggedInChanged FINAL)
     Q_PROPERTY(bool connected READ connected WRITE setConnected NOTIFY connectedChanged FINAL)
-    QStringListModel SuggestionModel;
 
     enum class UserRole
     {
@@ -53,10 +52,12 @@ public:
 signals:
     void usernameChanged();
     void loggedInChanged();
-
     void connectedChanged();
+    void updateSuggestions(const QString& word);
 
 public slots:
+    void printWord(const QString& word);
+
     bool connectToDatabase();
     bool isConnected();
     bool validateLogin(const QString& username, const QString& password);
@@ -69,7 +70,6 @@ public slots:
     void setSchool(int id);
     void deleteUser();
     void getTeacherNameSuggestions();
-
     int getUserId();
     int getSchoolId();
     int countTeacherRatings(int teacher_id);
@@ -95,6 +95,7 @@ private:
     bool m_loggedIn = false;
     bool m_connected = true;
     QStringList m_suggestions;
+    QStringList m_curr_suggestions;
 };
 
 #endif // DATABASE_H

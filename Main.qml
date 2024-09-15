@@ -51,4 +51,10 @@ Window {
         visible: status == Loader.Ready
     }
 
+    Component.onCompleted: {
+        Database.updateSuggestions("hello")
+    }
+
+
+
 }

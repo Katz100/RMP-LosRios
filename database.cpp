@@ -24,7 +24,8 @@ Database::Database(QObject *parent)
     }
 
   //  getTeacherNameSuggestions();
-  //  SuggestionModel.setStringList(m_suggestions);
+
+    connect(this, &Database::updateSuggestions, this, &Database::printWord);
 
 }
 
@@ -101,7 +102,6 @@ bool Database::validateLogin(const QString &username, const QString &password)
 void Database::loginUser(const QString &username)
 {
     setUsername(username);
-    setLoggedIn(true);
 }
 
 bool Database::isUsernameTaken(const QString &username)
@@ -507,5 +507,10 @@ void Database::setConnected(bool newConnected)
         return;
     m_connected = newConnected;
     emit connectedChanged();
+}
+
+void Database::printWord(const QString &word)
+{
+    qDebug() << word;
 }
 
