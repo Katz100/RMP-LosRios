@@ -31,3 +31,14 @@ function getTeacherName() {
 function getTeacherId() {
     return teacherId
 }
+
+function updateSuggestions() {
+    suggestionModel.clear()
+
+    let suggestions = Database.getCurrentSuggestions()
+
+    for(let i = 0; i < suggestions.length; i++)
+    {
+        suggestionModel.append(suggestions[i])
+    }
+}

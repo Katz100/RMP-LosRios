@@ -43,6 +43,12 @@ Rectangle {
                     searchField.text = ""
                 }
             }
+
+            onTextChanged: {
+                if (searchField.text != "") {
+                    Database.updateSuggestions(searchField.text)
+                }
+            }
         }
 
         Item {Layout.fillWidth: true}

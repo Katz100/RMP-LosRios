@@ -27,6 +27,10 @@ Window {
         id: teacherModel
     }
 
+    ListModel {
+        id: suggestionModel
+    }
+
     TopBar {
         id: topBar
     }
@@ -50,11 +54,4 @@ Window {
         asynchronous: true
         visible: status == Loader.Ready
     }
-
-    Component.onCompleted: {
-        Database.updateSuggestions("hello")
-    }
-
-
-
 }

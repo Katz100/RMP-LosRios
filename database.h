@@ -70,6 +70,7 @@ public slots:
     void setSchool(int id);
     void deleteUser();
     void getTeacherNameSuggestions();
+    void updateCurrentSuggestions(const QString& word);
     int getUserId();
     int getSchoolId();
     int countTeacherRatings(int teacher_id);
@@ -87,6 +88,7 @@ public slots:
     QVariantList getUserReviews();
     QVariantList getTeacherReviews(int teacher_id);
     QVariantList getTeachers(const QString& teacher_name);
+    QVariantList getCurrentSuggestions();
 
 
 private:

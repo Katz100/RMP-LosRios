@@ -23,9 +23,9 @@ Database::Database(QObject *parent)
         setConnected(false);
     }
 
-  //  getTeacherNameSuggestions();
+    getTeacherNameSuggestions();
 
-    connect(this, &Database::updateSuggestions, this, &Database::printWord);
+    connect(this, &Database::updateSuggestions, this, &Database::updateCurrentSuggestions);
 
 }
 
@@ -476,6 +476,19 @@ QVariantList Database::getTeachers(const QString &teacher_name)
     return teachers;
 }
 
+QVariantList Database::getCurrentSuggestions()
+{
+    QVariantList suggestions;
+
+    for (auto& s: m_curr_suggestions)
+    {
+        QVariantMap suggestion;
+        suggestion.insert("name", s);
+        suggestions.append(suggestion);
+    }
+    return suggestions;
+}
+
 void Database::getTeacherNameSuggestions()
 {
     QSqlQuery query;
@@ -490,6 +503,19 @@ void Database::getTeacherNameSuggestions()
     while (query.next())
     {
         m_suggestions << query.value("name").toString();
+    }
+}
+
+void Database::updateCurrentSuggestions(const QString &word)
+{
+    m_curr_suggestions.clear();
+
+    for(auto& s: m_suggestions)
+    {
+        if(s.startsWith(word.toLower(), Qt::CaseInsensitive))
+        {
+            m_curr_suggestions.append(s);
+        }
     }
 }
 
