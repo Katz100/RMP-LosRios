@@ -71,6 +71,7 @@ public slots:
     void deleteUser();
     void getTeacherNameSuggestions();
     void updateCurrentSuggestions(const QString& word);
+
     int getUserId();
     int getSchoolId();
     int countTeacherRatings(int teacher_id);

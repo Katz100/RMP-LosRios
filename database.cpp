@@ -102,6 +102,7 @@ bool Database::validateLogin(const QString &username, const QString &password)
 void Database::loginUser(const QString &username)
 {
     setUsername(username);
+    setLoggedIn(true);
 }
 
 bool Database::isUsernameTaken(const QString &username)
@@ -268,7 +269,6 @@ void Database::changeUsername(const QString &new_username)
         qDebug() << "changeUsername() error: " << query.lastError().text();
         return;
     }
-
     setUsername(new_username);
 }
 

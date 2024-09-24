@@ -1,19 +1,16 @@
 cmake_minimum_required(VERSION 3.16)
 
 project(RMP_LosRios VERSION 0.1 LANGUAGES CXX)
-
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(Qt6 6.4 REQUIRED COMPONENTS Quick Sql Network)
-
+find_package(Qt6 6.4 REQUIRED COMPONENTS Quick Sql Network QuickTest)
 
 qt_standard_project_setup()
-
-
 qt_add_executable(appRMP_LosRios
     main.cpp
 )
 
+qt_policy(SET QTP0001 OLD)
 
 qt_add_qml_module(appRMP_LosRios
     URI RMP_LosRios
@@ -37,9 +34,7 @@ qt_add_qml_module(appRMP_LosRios
     QML_FILES content/SearchResults.qml
     QML_FILES content/TeacherResult.qml
     QML_FILES content/TeacherReviews.qml
-    QML_FILES
-
-
+    QML_FILES content/PopupSuggestion.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.
@@ -57,6 +52,7 @@ target_link_libraries(appRMP_LosRios
     PRIVATE Qt6::Quick
     PRIVATE Qt6::Sql
     PRIVATE Qt6::Network
+    PRIVATE Qt6::QuickTest
 )
 
 
