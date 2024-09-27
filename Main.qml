@@ -23,6 +23,11 @@ Window {
         property int checkValue: Qt.Unchecked
     }
 
+    Pane {
+        anchors.fill: parent
+        focusPolicy: Qt.ClickFocus
+    }
+
     ListModel {
         id: teacherModel
     }
