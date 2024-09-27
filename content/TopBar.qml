@@ -45,11 +45,35 @@ Rectangle {
             }
 
             onTextChanged: {
+
                 if (searchField.text != "") {
                     Database.updateSuggestions(searchField.text)
+                    DataModel.updateSuggestions(searchField.text)
+                }
+                else {
+                    suggestionModel.clear()
+                }
+
+            }
+
+            onActiveFocusChanged: {
+                console.log(activeFocus)
+                if (activeFocus) {
+                    popupSuggestion.open()
+                }
+                else {
+                    popupSuggestion.close()
                 }
             }
         }
+
+        PopupSuggestion {
+            id: popupSuggestion
+            x: searchField.x
+            y: searchField.y + searchField.height
+            width: searchField.width
+        }
+
 
         Item {Layout.fillWidth: true}
 
