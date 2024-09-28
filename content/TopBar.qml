@@ -45,7 +45,6 @@ Rectangle {
             }
 
             onTextChanged: {
-
                 if (searchField.text != "") {
                     Database.updateSuggestions(searchField.text)
                     DataModel.updateSuggestions(searchField.text)
@@ -57,7 +56,6 @@ Rectangle {
             }
 
             onActiveFocusChanged: {
-                console.log(activeFocus)
                 if (activeFocus) {
                     popupSuggestion.open()
                 }
@@ -72,6 +70,11 @@ Rectangle {
             x: searchField.x
             y: searchField.y + searchField.height
             width: searchField.width
+
+            onItemClicked: function(name){
+                searchField.clear()
+                searchField.insert(0, name)
+            }
         }
 
 
