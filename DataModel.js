@@ -8,6 +8,10 @@ function searchTeachers(teacher_name) {
     let teachers = Database.getTeachers(teacher_name)
     for (let i = 0; i < teachers.length; i++) {
         teacherModel.append(teachers[i])
+        //limit results by 6 to improve search performance
+        if (i === 5) {
+            break;
+        }
     }
 }
 
@@ -40,5 +44,6 @@ function updateSuggestions() {
     for(let i = 0; i < suggestions.length; i++)
     {
         suggestionModel.append(suggestions[i])
+
     }
 }
