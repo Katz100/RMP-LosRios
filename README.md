@@ -25,7 +25,7 @@ _
 
 <h1>Documentation</h1>
 <details>
-<summary>database.h methods</summary>
+<summary>database.h</summary>
 <h2>bool connectToDatabase()</h2>
 <p>Attempts to connect to the database and returns <strong>true</strong> if the connection is successful; otherwise, returns <strong>false</strong>.</p>
 
@@ -124,4 +124,25 @@ _
 
 <h2>void setConnected(bool newConnected)</h2>
 <p>Sets the connection status of the database and emits the <strong>connectedChanged()</strong> signal if the value changes.</p>
+</details>
+
+<details>
+  <summary>networkmanager.h</summary>
+<h2>NetWorkManager(QObject *parent)</h2>
+<p>Constructor that initializes the <code>NetWorkManager</code> object and sets the header for the <code>QNetworkRequest</code> to <strong>application/json</strong>.</p>
+
+<h2>bool hasProfanity(const QString &text)</h2>
+<p>This method checks if the provided text contains profanity by sending a request to the <strong>https://tensor.profanity.dev</strong> API. It returns <strong>true</strong> if the profanity prediction score is greater than 0.7, otherwise returns <strong>false</strong>.</p>
+<ul>
+  <li>Sends a POST request with the text in JSON format.</li>
+  <li>Processes the server's response to determine if profanity is present.</li>
+</ul>
+
+<h2>bool usernameHasProfanity(const QString &username)</h2>
+<p>This method checks if the provided username contains profanity by sending a request to the <strong>https://vector.profanity.dev</strong> API. It returns <strong>true</strong> if profanity is detected in the username, otherwise <strong>false</strong>.</p>
+<ul>
+  <li>Sends a POST request with the username in JSON format.</li>
+  <li>Parses the server's response to check for profanity.</li>
+</ul>
+
 </details>
