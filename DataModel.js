@@ -1,18 +1,8 @@
 
 
 function searchTeachers(teacher_name) {
-    if(!isTeacherModelEmpty()) {
-        teacherModel.clear()
-    }
-
     let teachers = Database.getTeachers(teacher_name)
-    for (let i = 0; i < teachers.length; i++) {
-        teacherModel.append(teachers[i])
-        //limit results by 6 to improve search performance
-        if (i === 5) {
-            break;
-        }
-    }
+    _teacherModel.addData(teachers)
 }
 
 function isTeacherModelEmpty() {

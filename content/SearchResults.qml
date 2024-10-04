@@ -9,7 +9,7 @@ Rectangle {
         ListView {
             anchors.fill: parent
             id: lv
-            model: teacherModel
+            model: _teacherModel
             spacing: 20
             clip: true
             cacheBuffer: 500
@@ -26,10 +26,8 @@ Rectangle {
                     hoverEnabled: true
                     cursorShape: Qt.PointingHandCursor
                     onClicked: {
-                        if (loader.status === Loader.loaded()) {
                             DataModel.setTeacherSource(teacher_id, name)
                             loader.source = "content/TeacherReviews.qml"
-                        }
                     }
                 }
             }

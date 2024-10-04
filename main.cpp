@@ -1,8 +1,10 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QtQml/QQmlContext>
+#include <QQuickView>
 #include "database.h"
 #include "networkmanager.h"
-#include <QtQml/QQmlContext>
+#include "teachermodel.h"
 
 int main(int argc, char *argv[])
 {
@@ -14,9 +16,17 @@ int main(int argc, char *argv[])
     NetWorkManager* network = new NetWorkManager(&app);
     qmlRegisterSingletonInstance("com.company.network", 1, 0, "Network", network);
 
+    TeacherModel teacherModel;
+
     QQmlApplicationEngine engine;
 
+    engine.rootContext()->setContextProperty("_teacherModel", &teacherModel);
+
     const QUrl url(QStringLiteral("qrc:/RMP_LosRios/Main.qml"));
+
+
+
+
     QObject::connect(
         &engine,
         &QQmlApplicationEngine::objectCreationFailed,

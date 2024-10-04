@@ -170,6 +170,7 @@ Rectangle {
 
         Component.onCompleted: {
             let reviews = Database.getTeacherReviews(DataModel.getTeacherId())
+            console.log(reviews)
             for (let i = 0; i < reviews.length; i++) {
                 lm.append(reviews[i])
             }
