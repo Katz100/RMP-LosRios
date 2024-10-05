@@ -36,10 +36,10 @@ Rectangle {
 
             Keys.onReturnPressed: {
                 if (searchField.text !== "") {
+                    DataModel.searchTeachers(searchField.text)
                     if (loader.source !== "content/SearchResults.qml") {
                         loader.source = "content/SearchResults.qml"
                     }
-                    DataModel.searchTeachers(searchField.text)
                     searchField.text = ""
                 }
             }

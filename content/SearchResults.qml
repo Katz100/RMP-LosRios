@@ -13,7 +13,9 @@ Rectangle {
             spacing: 20
             clip: true
             cacheBuffer: 500
-            delegate: TeacherResult {
+            delegate:
+
+                TeacherResult {
                 width: lv.contentItem.width
                 height: 150
                 qualityTxt: Database.getAverageRating(teacher_id)
@@ -26,10 +28,11 @@ Rectangle {
                     hoverEnabled: true
                     cursorShape: Qt.PointingHandCursor
                     onClicked: {
-                            DataModel.setTeacherSource(teacher_id, name)
-                            loader.source = "content/TeacherReviews.qml"
+                        DataModel.setTeacherSource(teacher_id, name)
+                        loader.source = "content/TeacherReviews.qml"
                     }
                 }
+
             }
         }
     }

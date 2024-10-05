@@ -9,20 +9,24 @@ int TeacherModel::rowCount(const QModelIndex &parent) const
 {
     if (parent.isValid())
         return 0;
-    return m_data.count();
+    return m_loadedCount;
 }
 
 QVariant TeacherModel::data(const QModelIndex &index, int role) const
 {
-    if (!index.isValid())
+    if (!index.isValid() || index.row() >= m_loadedCount)
         return QVariant();
 
-    const Data &data = m_data.at(index.row());
+    const int row = index.row();
+    if (row >= m_data.size() || row < 0)
+        return QVariant();
+
     switch (role) {
     case TeacherIdRole:
-        return data.teacher_id;
+        return m_data.at(row).teacher_id;
     case NameRole:
-        return data.name;
+        qDebug() << m_data.at(row).name;
+        return m_data.at(row).name;
 
     default:
         return QVariant();
@@ -42,10 +46,9 @@ QHash<int, QByteArray> TeacherModel::roleNames() const
 void TeacherModel::addData(QVariantList data)
 {
     beginResetModel();
-    m_data.clear();
-    endResetModel();
+    clearData();
 
-    beginInsertRows(QModelIndex(), 0, data.length()-1);
+    //beginInsertRows(QModelIndex(), 0, data.length()-1);
     for (int i = 0; i < data.length(); i++)
     {
         int teacher_id = data[i].toMap().value("teacher_id").toInt();
@@ -54,11 +57,51 @@ void TeacherModel::addData(QVariantList data)
         const Data teacher(teacher_id, name);
         m_data.append(teacher);
     }
-    endInsertRows();
+    //endInsertRows();
+    endResetModel();
+
+}
+
+void TeacherModel::clearData()
+{
+    beginRemoveRows(QModelIndex(), 0, m_data.length() - 1);
+    m_data.clear();
+    m_loadedCount = 0;
+    endRemoveRows();
 }
 
 void TeacherModel::removeData(int row)
 {
 
+}
+
+
+
+void TeacherModel::fetchMore(const QModelIndex &parent)
+{
+    if (parent.isValid())
+        return;
+
+    const int remainder = m_data.count() - m_loadedCount;
+    int itemsToFetch = qMin(m_batchSize, remainder);
+
+
+
+    if (itemsToFetch <= 0)
+        return;
+
+    beginInsertRows(QModelIndex(), m_loadedCount, m_loadedCount + itemsToFetch - 1);
+
+    m_loadedCount += itemsToFetch;
+
+    endInsertRows();
+}
+
+
+bool TeacherModel::canFetchMore(const QModelIndex &parent) const
+{
+    if (parent.isValid())
+        return false;
+    return m_loadedCount < m_data.size();
 }
 
