@@ -24,8 +24,10 @@ Database::Database(QObject *parent)
     }
 
     getTeacherNameSuggestions();
+    cacheTeacherInfo();
 
     connect(this, &Database::updateSuggestions, this, &Database::updateCurrentSuggestions);
+
 
 }
 
@@ -73,6 +75,24 @@ void Database::setLoggedIn(bool newloggedIn)
 QString Database::hashPassword(const QString &password)
 {
     return QString(QCryptographicHash::hash(password.toUtf8(), QCryptographicHash::Md5));
+}
+
+QString Database::mapAverageRating(int teacher_id)
+{
+    QList<QMap<QString, double>> values = _m_teacher_info.values(teacher_id);
+    return QString::number(values[0].value("average_rating"));
+}
+
+QString Database::mapCountTeacherRating(int teacher_id)
+{
+    QList<QMap<QString, double>> values = _m_teacher_info.values(teacher_id);
+    return QString::number(values[0].value("count_ratings"));
+}
+
+QString Database::mapAverageDifficulty(int teacher_id)
+{
+    QList<QMap<QString, double>> values = _m_teacher_info.values(teacher_id);
+    return QString::number(values[0].value("average_difficulty"));
 }
 
 bool Database::validateLogin(const QString &username, const QString &password)
@@ -182,8 +202,29 @@ int Database::getSchoolId()
 int Database::countTeacherRatings(int teacher_id)
 {
     QSqlQuery query;
-    query.prepare("SELECT COUNT(*) FROM Review WHERE teacher_id = ?");
+    query.prepare("SELECT COUNT(id) FROM Review WHERE teacher_id = ?");
     query.bindValue(0, teacher_id);
+    if (!query.exec())
+    {
+        qDebug() << query.lastError().text();
+        return -1;
+    }
+
+    if (query.next())
+    {
+        qDebug() << query.value(0).toInt();
+        return query.value(0).toInt();
+    }
+
+    return -1;
+}
+
+int Database::getRatings(int teacher_id, int rating_number)
+{
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM Review WHERE teacher_id = ? AND quality = ?");
+    query.bindValue(0, teacher_id);
+    query.bindValue(1, rating_number);
     if (!query.exec())
     {
         qDebug() << query.lastError().text();
@@ -198,13 +239,11 @@ int Database::countTeacherRatings(int teacher_id)
     return -1;
 }
 
-int Database::getRatings(int teacher_id, int rating_number)
+int Database::countTotalTeachers()
 {
     QSqlQuery query;
-    query.prepare("SELECT COUNT(*) FROM Review WHERE teacher_id = ? AND quality = ?");
-    query.bindValue(0, teacher_id);
-    query.bindValue(1, rating_number);
-    if (!query.exec())
+    query.prepare("SELECT COUNT(id) FROM Teachers");
+    if(!query.exec())
     {
         qDebug() << query.lastError().text();
         return -1;
@@ -254,6 +293,41 @@ double Database::getAverageDifficulty(int teacher_id)
     }
 
     return -1.0;
+}
+
+
+void Database::cacheTeacherInfo()
+{
+    QSqlQuery query;
+    query.prepare("SELECT Teachers.id, "
+                  "AVG(Review.quality)::NUMERIC(10, 1) AS average_rating, "
+                  "COUNT(Review.id) AS count_ratings, "
+                  "AVG(Review.difficulty)::NUMERIC(10, 1) AS average_difficulty "
+                  "FROM Teachers "
+                  "LEFT JOIN Review ON Teachers.id = Review.teacher_id "
+                  "GROUP BY Teachers.id");
+
+    if (!query.exec())
+    {
+        qDebug() << query.lastError().text();
+        return;
+    }
+
+    while (query.next())
+    {
+        int teacherId = query.value(0).toInt();
+        double avgRating = query.value(1).toDouble();
+        int ratingCount = query.value(2).toInt();
+        double avgDifficulty = query.value(3).toDouble();
+        qDebug() << teacherId;
+
+        QMap<QString, double> teacherInfo;
+        teacherInfo["average_rating"] = avgRating;
+        teacherInfo["count_ratings"] = ratingCount;
+        teacherInfo["average_difficulty"] = avgDifficulty;
+
+        _m_teacher_info.insert(teacherId, teacherInfo);
+    }
 }
 
 void Database::changeUsername(const QString &new_username)

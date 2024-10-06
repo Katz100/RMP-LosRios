@@ -76,15 +76,21 @@ public slots:
     int getSchoolId();
     int countTeacherRatings(int teacher_id);
     int getRatings(int teacher_id, int rating_number);
+    int countTotalTeachers();
 
     double getAverageRating(int teacher_id);
     double getAverageDifficulty(int teacher_id);
+    void cacheTeacherInfo();
 
     QString getTeacher(int id);
     QString getCourse(int id);
     QString generateSalt();
     QString getUserSalt(const QString& username);
     QString hashPassword(const QString& password);
+
+    QString mapAverageRating(int teacher_id);
+    QString mapCountTeacherRating(int teacher_id);
+    QString mapAverageDifficulty(int teacher_id);
 
     QVariantList getUserReviews();
     QVariantList getTeacherReviews(int teacher_id);
@@ -95,10 +101,14 @@ public slots:
 private:
     QSqlDatabase db_connection;
     QString m_username = "Guest";
+
     bool m_loggedIn = false;
     bool m_connected = true;
+
     QStringList m_suggestions;
     QStringList m_curr_suggestions;
+
+    QMultiMap<int, QMap<QString, double>> _m_teacher_info;
 };
 
 #endif // DATABASE_H

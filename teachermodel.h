@@ -47,7 +47,7 @@ private slots:
 private:
     QVector<Data> m_data;
     int m_loadedCount = 0;
-    int m_batchSize = 10;
+    int m_batchSize = 5;
 
 };
 

@@ -18,10 +18,10 @@ Rectangle {
                 TeacherResult {
                 width: lv.contentItem.width
                 height: 150
-                qualityTxt: Database.getAverageRating(teacher_id)
-                ratingsTxt: Database.countTeacherRatings(teacher_id) + " ratings"
+                qualityTxt: Database.mapAverageRating(teacher_id)
+                ratingsTxt: Database.mapCountTeacherRating(teacher_id) + " ratings"
                 teacherTxt: name
-                difficultyTxt: Database.getAverageDifficulty(teacher_id) + " difficulty"
+                difficultyTxt: Database.mapAverageDifficulty(teacher_id) + " difficulty"
 
                 MouseArea {
                     anchors.fill: parent
