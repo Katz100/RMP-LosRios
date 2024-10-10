@@ -99,9 +99,9 @@ Rectangle {
                 hoverEnabled: true
                 cursorShape: Qt.PointingHandCursor
                 onClicked: {
-                    if (Database.loggedIn) {
+                   // if (Database.loggedIn) {
                         popUp.open()
-                    }
+                    //}
                 }
 
                 onEntered: usernameRect.color = "#2C2D2D"
@@ -133,6 +133,7 @@ Rectangle {
                     Layout.fillWidth: true
                     Layout.preferredHeight: 50
                     radius: 5
+                    visible: Database.loggedIn
                     Text {
                         id: profileTxt
                         anchors.centerIn: parent
@@ -165,6 +166,7 @@ Rectangle {
                     id: accountSettings
                     Layout.fillWidth: true
                     Layout.preferredHeight: 50
+                    visible: Database.loggedIn
                     radius: 5
                     Text {
                         id: accTxt
@@ -198,6 +200,7 @@ Rectangle {
                     Layout.fillWidth: true
                     Layout.preferredHeight: 50
                     radius: 5
+                    visible: Database.loggedIn
                     Text {
                         id: ratingsTxt
                         anchors.centerIn: parent
@@ -230,6 +233,7 @@ Rectangle {
                     Layout.fillWidth: true
                     Layout.preferredHeight: 50
                     radius: 5
+                    visible: Database.loggedIn
                     Text {
                         id: logoutTxt
                         anchors.centerIn: parent
@@ -250,6 +254,37 @@ Rectangle {
 
                         onClicked: {
                             Database.logout()
+                            popUp.close()
+                            loader.source = "content/LoginMenu.qml"
+                        }
+                    }
+                }
+
+                Rectangle {
+                    id: signIn
+                    Layout.fillWidth: true
+                    Layout.preferredHeight: 50
+                    radius: 5
+                    visible: !Database.loggedIn
+                    Text {
+                        id: signInTxt
+                        anchors.centerIn: parent
+                        text: "Sign In"
+                    }
+                    MouseArea {
+                        hoverEnabled: true
+                        anchors.fill: parent
+                        cursorShape: Qt.PointingHandCursor
+                        onEntered: {
+                            signIn.color = "blue"
+                            signInTxt.color = "white"
+                        }
+                        onExited: {
+                            signInTxt.color = "black"
+                            signIn.color = "white"
+                        }
+
+                        onClicked: {
                             popUp.close()
                             loader.source = "content/LoginMenu.qml"
                         }

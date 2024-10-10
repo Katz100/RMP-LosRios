@@ -319,7 +319,6 @@ void Database::cacheTeacherInfo()
         double avgRating = query.value(1).toDouble();
         int ratingCount = query.value(2).toInt();
         double avgDifficulty = query.value(3).toDouble();
-        qDebug() << teacherId;
 
         QMap<QString, double> teacherInfo;
         teacherInfo["average_rating"] = avgRating;

@@ -71,6 +71,7 @@ public slots:
     void deleteUser();
     void getTeacherNameSuggestions();
     void updateCurrentSuggestions(const QString& word);
+    void cacheTeacherInfo();
 
     int getUserId();
     int getSchoolId();
@@ -80,14 +81,12 @@ public slots:
 
     double getAverageRating(int teacher_id);
     double getAverageDifficulty(int teacher_id);
-    void cacheTeacherInfo();
 
     QString getTeacher(int id);
     QString getCourse(int id);
     QString generateSalt();
     QString getUserSalt(const QString& username);
     QString hashPassword(const QString& password);
-
     QString mapAverageRating(int teacher_id);
     QString mapCountTeacherRating(int teacher_id);
     QString mapAverageDifficulty(int teacher_id);
