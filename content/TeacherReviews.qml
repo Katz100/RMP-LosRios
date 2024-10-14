@@ -16,8 +16,8 @@ Rectangle {
             id: rating
             Layout.row: 0
             Layout.column: 1
-            text: "<b>%1</b>/5<br>Quality Based on %2 ratings<br><b>%3</b>".arg(Database.getAverageRating(DataModel.getTeacherId()))
-            .arg(Database.countTeacherRatings(DataModel.getTeacherId()))
+            text: "<b>%1</b>/5<br>Quality Based on %2 ratings<br><b>%3</b>".arg(Database.mapAverageRating(DataModel.getTeacherId()))
+            .arg(Database.mapCountTeacherRating(DataModel.getTeacherId()))
             .arg(DataModel.getTeacherName())
         }
 
@@ -131,12 +131,20 @@ Rectangle {
 
 
             Item {Layout.row: 0; Layout.column: 3;Layout.fillWidth: true}
+            Button {
+                text: "Rate"
+                Layout.row: 1
+                Layout.columnSpan: 4
+                Layout.alignment: Qt.AlignHCenter
+                Layout.topMargin: 20
+                //visible: Database.loggedIn
+            }
 
             ListView {
                 id: lv
                 model: lm
                 clip: true
-                Layout.row: 1
+                Layout.row: 2
                 Layout.columnSpan: 4
                 Layout.rowSpan: 4
                 Layout.preferredWidth: 500
@@ -165,12 +173,11 @@ Rectangle {
         }
 
         function getBarLength(rating) {
-            return (Database.getRatings(DataModel.getTeacherId(), rating) / Database.countTeacherRatings(DataModel.getTeacherId()))
+            return (Database.getRatings(DataModel.getTeacherId(), rating) / Database.mapCountTeacherRating(DataModel.getTeacherId()))
         }
 
         Component.onCompleted: {
             let reviews = Database.getTeacherReviews(DataModel.getTeacherId())
-            console.log(reviews)
             for (let i = 0; i < reviews.length; i++) {
                 lm.append(reviews[i])
             }
