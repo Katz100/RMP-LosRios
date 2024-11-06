@@ -192,7 +192,7 @@ Rectangle {
     }
 
     Connections {
-        target: window
+        target: root
         function onMenuItemClicked(index) {
             control.setCurrentIndex(index)
         }

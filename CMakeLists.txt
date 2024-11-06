@@ -37,6 +37,8 @@ qt_add_qml_module(appRMP_LosRios
     QML_FILES content/PopupSuggestion.qml
    #SOURCES reviewmodel.h reviewmodel.cpp
     SOURCES teachermodel.h teachermodel.cpp
+    QML_FILES content/AddReviewPage.qml
+    QML_FILES content/ReviewItem.qml
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

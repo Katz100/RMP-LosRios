@@ -5,7 +5,7 @@ import "content"
 import com.company.database
 import "DataModel.js" as DataModel
 Window {
-    id: window
+    id: root
     width: 640
     height: 480
     visible: true
@@ -46,7 +46,6 @@ Window {
         running: loader.status == Loader.Loading
     }
 
-
     Loader {
         id: loader
         anchors {
@@ -55,7 +54,8 @@ Window {
             left: parent.left
             bottom: parent.bottom
         }
-        source: "content/LoginMenu.qml"
+        //source: "content/LoginMenu.qml"
+        source: "content/AddReviewPage.qml"
         asynchronous: true
         visible: status == Loader.Ready
     }

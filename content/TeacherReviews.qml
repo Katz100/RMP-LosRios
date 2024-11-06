@@ -137,7 +137,8 @@ Rectangle {
                 Layout.columnSpan: 4
                 Layout.alignment: Qt.AlignHCenter
                 Layout.topMargin: 20
-                //visible: Database.loggedIn
+                visible: Database.loggedIn
+                onClicked: loader.source = "content/AddReviewPage.qml"
             }
 
             ListView {
