@@ -2,32 +2,30 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 Rectangle {
-    ScrollView {
-        ColumnLayout {
-            anchors.fill: parent
-            Rectangle {
-                border.color: "black"
-                height: 150
-                width: Math.min(root.width / 1.3, 500)
-                Layout.alignment: Qt.AlignCenter
 
-                Text {
-                    id: courseTxt
-                    anchors {
-                        left: parent.left
-                        top: parent.top
-                        leftMargin: 20
-                        topMargin: 20
-                    }
-                    text: "<b>Enter Course Code</b>"
-                }
+    property string courseName
+    property string courseCode
+    property string subject
+    property string quality
+    property string difficulty
+    property string reviewText
 
-                TextField {
-                    placeholderText: "Course Code"
-                    anchors.centerIn: parent
-                    width: parent.width / 2
-                }
-            }
+    StackView {
+        id: stack
+        initialItem: courseName
+        anchors.centerIn: parent
+        height: Math.min(root.height, 150)
+        width: Math.min(root.width / 1.3, 500)
+    }
+
+    ReviewItem {
+        id: courseName
+        text: "Enter Course Code"
+        placeHolderText: "Course Code"
+
+        function onNextButtonClicked(content){
+
         }
     }
 }
+

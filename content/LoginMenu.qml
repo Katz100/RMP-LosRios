@@ -11,15 +11,11 @@ Rectangle {
     property bool __txtVisible: false
     property bool __showPassword: false
 
-
-
     Rectangle {
         id: root
         width: parent.width / 2
         height: parent.width / 2
         anchors.centerIn: parent
-
-
 
         GridLayout {
             id: col
