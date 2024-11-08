@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 
+
 Rectangle {
     property alias text: txt.text
     property alias placeHolderText: tf.placeholderText
@@ -8,9 +9,8 @@ Rectangle {
     signal backButtonClicked()
 
     border.color: "black"
-    anchors.centerIn: parent
-    width: stack.width
-    height: stack.height
+    height: Math.min(root.height, 150)
+    width: Math.min(root.width / 1.3, 500)
     Text {
         id: txt
         anchors {
@@ -31,7 +31,8 @@ Rectangle {
     Button {
         id: nextButton
         text: "Next"
-        onClicked: nextButtonClicked(tf.text)
+        onClicked:{
+            nextButtonClicked(tf.text)}
         anchors {
             bottom: parent.bottom
             right: parent.right
